@@ -13,7 +13,7 @@
         <init-param>
             <param-name>jaxrs.serviceClasses</param-name>
             <param-value>
-                com.github.alien11689.webservices.projectrest.ProjectService
+                com.github.alien11689.webservices.restwithoutdi02.ProjectService
             </param-value>
         </init-param>
         <init-param>
