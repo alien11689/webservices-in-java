@@ -57,4 +57,11 @@ public class Project {
         result = 31 * result + (changes != null ? changes.hashCode() : 0);
         return result;
     }
+
+    public Project(String name) {
+        this.name = name;
+    }
+
+    public Project() {
+    }
 }

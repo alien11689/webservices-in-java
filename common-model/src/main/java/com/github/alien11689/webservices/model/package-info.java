@@ -9,4 +9,3 @@ package com.github.alien11689.webservices.model;
 
 import javax.xml.bind.annotation.*;
 import java.time.LocalDateTime;
-import java.util.Date;

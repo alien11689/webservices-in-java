@@ -19,7 +19,7 @@
         <init-param>
             <param-name>jaxrs.providers</param-name>
             <param-value>
-                org.codehaus.jackson.jaxrs.JacksonJsonProvider
+                com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider
             </param-value>
         </init-param>
         <init-param>

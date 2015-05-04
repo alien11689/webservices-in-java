@@ -12,6 +12,6 @@ public class ProjectServiceIT {
         when()
                 .get("/02RestWithoutDI/project")
         .then()
-                .body(equalTo("<project>RestProject</project>"));
+                .body("project.@name", equalTo("RestProject"));
     }
 }
