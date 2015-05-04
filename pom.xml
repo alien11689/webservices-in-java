@@ -12,6 +12,7 @@
         <module>common-model</module>
         <module>01SimpleRest</module>
         <module>02RestWithoutDI</module>
+        <module>common-model-gen</module>
     </modules>
 
     <properties>
@@ -36,6 +37,7 @@
         <maven-failsafe-plugin.version>2.18.1</maven-failsafe-plugin.version>
         <exec-maven-plugin.version>1.4.0</exec-maven-plugin.version>
         <jaxb2-maven-plugin.version>1.6</jaxb2-maven-plugin.version>
+        <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -114,6 +116,11 @@
                 <version>${objenesis.version}</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>com.github.alien11689</groupId>
+                <artifactId>common-model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -131,6 +138,10 @@
         </plugins>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin.version}</version>
+                </plugin>
                 <plugin>
                     <groupId>org.codehaus.gmavenplus</groupId>
                     <artifactId>gmavenplus-plugin</artifactId>
@@ -201,18 +212,11 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>jaxb2-maven-plugin</artifactId>
                     <version>${jaxb2-maven-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>schemagen</id>
-                            <phase>process-classes</phase>
-                            <goals>
-                                <goal>schemagen</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <verbose>true</verbose>
-                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.10</version>
                 </plugin>
             </plugins>
         </pluginManagement>

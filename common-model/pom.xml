@@ -16,6 +16,15 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxb2-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>schemagen</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>schemagen</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <transformSchemas>
                         <transformSchema>
@@ -24,10 +33,39 @@
                             <toFile>projectReview.xsd</toFile>
                         </transformSchema>
                     </transformSchemas>
+                    <clearOutputDir>true</clearOutputDir>
                     <includes>
                         <include>com/github/alien11689/webservices/model/*</include>
                     </includes>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target</outputDirectory>
+                            <includeEmptyDirs>true</includeEmptyDirs>
+                            <resources>
+                                <resource>
+                                    <targetPath>${basedir}/target/classes</targetPath>
+                                    <directory>${basedir}/target/generated-resources/schemagen</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>
+                                            **/*.xsd
+                                        </include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
