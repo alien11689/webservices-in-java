@@ -4,3 +4,4 @@ tomcat8:
         - "8080:8080"
     volumes:
         - tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml:ro
+        - /tmp/tomcatLogs:/usr/local/tomcat/logs/
