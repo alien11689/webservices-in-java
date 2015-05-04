@@ -1,4 +1,6 @@
 tomcat8:
-    build: docker/tomcat8/.
+    image: tomcat:8.0.21-jre8
     ports:
         - "8080:8080"
+    volumes:
+        - tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml:ro

@@ -1,4 +1,5 @@
 #!/bin/sh
 BASEDIR=$(dirname $0)
 cd $BASEDIR
-docker-compose up -d
+[ -z `docker-compose ps -q` ] && docker-compose up -d
+exit 0
