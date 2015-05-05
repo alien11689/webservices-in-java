@@ -21,8 +21,12 @@ public class ProjectServiceWithUriInfo {
     @GET
     public Project get() {
         String name = uriInfo.getQueryParameters().getFirst("name");
-        return projects.values().stream().filter(p ->             p.getName().equals(name)
-        ).findFirst().get();
+        return projects
+                .values()
+                .stream()
+                .filter(p -> p.getName().equals(name))
+                .findFirst()
+                .get();
     }
 
     @POST
