@@ -17,7 +17,7 @@ public class User {
     @XmlAttribute
     private String lastName;
 
-    private transient String password;
+    private transient char[] password;
 
     public User() {
     }
@@ -84,11 +84,11 @@ public class User {
         return result;
     }
 
-    public String getPassword() {
+    public char[] getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(char[] password) {
         this.password = password;
     }
 }
