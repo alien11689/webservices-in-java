@@ -6,7 +6,7 @@ import org.junit.Test;
 import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 
-public class ProjectServiceV1IT {
+public class ProjectServiceWithGetIT {
     @Test
     public void shouldReturnProjectNameAsXml() {
         given()

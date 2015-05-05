@@ -5,7 +5,7 @@ import com.github.alien11689.webservices.model.User
 import org.apache.cxf.jaxrs.client.WebClient
 import spock.lang.Specification
 
-class ProjectServiceV3IT extends Specification {
+class ProjectServiceWithUriInfoIT extends Specification {
 
     WebClient client = WebClient
             .create('http://localhost:8080/')

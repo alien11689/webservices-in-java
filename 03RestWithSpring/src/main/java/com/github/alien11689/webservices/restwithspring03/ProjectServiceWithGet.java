@@ -8,7 +8,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("/v1/project")
-public class ProjectServiceV1 {
+public class ProjectServiceWithGet {
     @GET
     public Project get() {
         return new Project("Test project");

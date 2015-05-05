@@ -12,13 +12,13 @@
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
-    <bean id="projectServiceV1" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceV1"/>
+    <bean id="projectServiceV1" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceWithGet"/>
 
     <bean id="jsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider"/>
 
-    <bean id="projectServiceV2" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceV2"/>
+    <bean id="projectServiceV2" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceWithMoreMethods"/>
 
-    <bean id="projectServiceV3" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceV3"/>
+    <bean id="projectServiceV3" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceWithUriInfo"/>
 
     <cxf:bus id="cxf">
         <cxf:features>
