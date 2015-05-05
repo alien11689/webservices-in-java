@@ -22,6 +22,8 @@
 
     <bean id="projectServiceV4" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceWithParameters"/>
 
+    <bean id="projectServiceV5" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceWithInterfaceImpl"/>
+
     <cxf:bus id="cxf">
         <cxf:features>
             <cxf:logging/>
@@ -36,6 +38,7 @@
             <ref bean="projectServiceV2"/>
             <ref bean="projectServiceV3"/>
             <ref bean="projectServiceV4"/>
+            <ref bean="projectServiceV5"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>
