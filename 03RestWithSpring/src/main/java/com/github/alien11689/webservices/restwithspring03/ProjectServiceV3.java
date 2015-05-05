@@ -28,9 +28,6 @@ public class ProjectServiceV3 {
     @POST
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Project p) {
-        if (projects.containsKey(p.getName())) {
-            throw new RuntimeException("Project already exists");
-        }
         projects.put(p.getName(), p);
     }
 
