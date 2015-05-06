@@ -12,21 +12,7 @@
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
-    <bean id="projectServiceV1" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceWithGet"/>
-
     <bean id="jsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider"/>
-
-    <bean id="projectServiceV2" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceWithMoreMethods"/>
-
-    <bean id="projectServiceV3" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceWithUriInfo"/>
-
-    <bean id="projectServiceV4" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceWithParameters"/>
-
-    <bean id="projectServiceV5" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceWithInterfaceImpl"/>
-
-    <bean id="projectServiceV6" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceWithExceptions"/>
-    <bean id="projectServiceV7" class="com.github.alien11689.webservices.restwithspring03.webapplicationexceptions.ProjectServiceWithWebApplicationExceptions"/>
-
     <bean id="projectServiceV8" class="com.github.alien11689.webservices.restwithspring03.webapplicationexceptionsmapper.ProjectServiceWithWebApplicationExceptionsMapper"/>
 
     <bean id="exceptionMapper" class="com.github.alien11689.webservices.restwithspring03.webapplicationexceptionsmapper.ExceptionMapperImpl"/>
@@ -41,16 +27,11 @@
                   address="/"
                   bus="cxf">
         <jaxrs:serviceBeans>
-            <ref bean="projectServiceV1"/>
-            <ref bean="projectServiceV2"/>
-            <ref bean="projectServiceV3"/>
-            <ref bean="projectServiceV4"/>
-            <ref bean="projectServiceV5"/>
-            <ref bean="projectServiceV6"/>
-            <ref bean="projectServiceV7"/>
+            <ref bean="projectServiceV8"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>
+            <ref bean="exceptionMapper"/>
         </jaxrs:providers>
     </jaxrs:server>
 

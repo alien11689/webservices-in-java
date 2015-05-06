@@ -12,7 +12,7 @@ public class ProjectServiceWithGetIT {
         given()
                 .accept(ContentType.XML)
         .when()
-                .get("/03RestWithSpring/v1/project")
+                .get("/03RestWithSpring/api1/v1/project")
         .then()
                 .contentType(ContentType.XML)
                 .body("project.@name", equalTo("Test project"));
@@ -23,7 +23,7 @@ public class ProjectServiceWithGetIT {
         given()
                 .accept(ContentType.JSON)
         .when()
-                .get("/03RestWithSpring/v1/project")
+                .get("/03RestWithSpring/api1/v1/project")
         .then()
                 .contentType(ContentType.JSON)
                 .body("name", equalTo("Test project"));
@@ -34,7 +34,7 @@ public class ProjectServiceWithGetIT {
         given()
                 .accept("application/json; q=0.8, application/xml; q=0.7")
         .when()
-                .get("/03RestWithSpring/v1/project")
+                .get("/03RestWithSpring/api1/v1/project")
         .then()
                 .contentType(ContentType.JSON);
     }
@@ -44,7 +44,7 @@ public class ProjectServiceWithGetIT {
         given()
                 .accept("application/json; q=0.5, application/xml; q=0.7")
         .when()
-                .get("/03RestWithSpring/v1/project")
+                .get("/03RestWithSpring/api1/v1/project")
         .then()
                 .contentType(ContentType.XML);
     }

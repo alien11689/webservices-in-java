@@ -9,7 +9,7 @@ class ProjectServiceWithUriInfoIT extends Specification {
 
     WebClient client = WebClient
             .create('http://localhost:8080/')
-            .path('03RestWithSpring/v3/project')
+            .path('03RestWithSpring/api1/v3/project')
 
     void setup() {
         client.delete()

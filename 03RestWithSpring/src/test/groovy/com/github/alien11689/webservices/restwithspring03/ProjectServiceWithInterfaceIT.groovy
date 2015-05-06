@@ -8,7 +8,7 @@ import spock.lang.Specification
 
 class ProjectServiceWithInterfaceIT extends Specification {
 
-    ProjectServiceWithInterface projectService = JAXRSClientFactory.create("http://localhost:8080/03RestWithSpring", ProjectServiceWithInterface.class);
+    ProjectServiceWithInterface projectService = JAXRSClientFactory.create("http://localhost:8080/03RestWithSpring/api1/", ProjectServiceWithInterface.class);
 
     void setup() {
         projectService.deleteProjects()

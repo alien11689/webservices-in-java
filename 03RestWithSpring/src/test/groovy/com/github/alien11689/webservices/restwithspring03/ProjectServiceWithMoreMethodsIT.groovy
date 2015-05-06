@@ -9,7 +9,7 @@ class ProjectServiceWithMoreMethodsIT extends Specification {
 
     WebClient client = WebClient
             .create('http://localhost:8080/')
-            .path('03RestWithSpring/v2/project')
+            .path('03RestWithSpring/api1/v2/project')
 
     void setup() {
         client.delete()
