@@ -26,10 +26,7 @@
 
     <bean id="projectServiceV6" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceWithExceptions"/>
     <bean id="projectServiceV7" class="com.github.alien11689.webservices.restwithspring03.webapplicationexceptions.ProjectServiceWithWebApplicationExceptions"/>
-
-    <bean id="projectServiceV8" class="com.github.alien11689.webservices.restwithspring03.webapplicationexceptionsmapper.ProjectServiceWithWebApplicationExceptionsMapper"/>
-
-    <bean id="exceptionMapper" class="com.github.alien11689.webservices.restwithspring03.webapplicationexceptionsmapper.ExceptionMapperImpl"/>
+    <bean id="projectServiceV9" class="com.github.alien11689.webservices.restwithspring03.responseasout.ProjectServiceWithResponses"/>
 
     <cxf:bus id="cxf">
         <cxf:features>
@@ -48,6 +45,7 @@
             <ref bean="projectServiceV5"/>
             <ref bean="projectServiceV6"/>
             <ref bean="projectServiceV7"/>
+            <ref bean="projectServiceV9"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>
