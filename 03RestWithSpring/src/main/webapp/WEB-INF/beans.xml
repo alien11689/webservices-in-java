@@ -28,6 +28,8 @@
     <bean id="projectServiceV7" class="com.github.alien11689.webservices.restwithspring03.webapplicationexceptions.ProjectServiceWithWebApplicationExceptions"/>
     <bean id="projectServiceV9" class="com.github.alien11689.webservices.restwithspring03.responseasout.ProjectServiceWithResponses"/>
 
+    <bean id="changesServiceWithCache" class="com.github.alien11689.webservices.restwithspring03.caching.ChangesServiceWithCache"/>
+
     <cxf:bus id="cxf">
         <cxf:features>
             <cxf:logging/>
@@ -46,6 +48,7 @@
             <ref bean="projectServiceV6"/>
             <ref bean="projectServiceV7"/>
             <ref bean="projectServiceV9"/>
+            <ref bean="changesServiceWithCache"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>

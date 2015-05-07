@@ -5,11 +5,15 @@ import com.github.alien11689.webservices.model.adapters.DateAdapter;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@XmlRootElement
 public class Review {
+    @XmlAttribute
+    private Long id;
     @XmlAttribute(required = true)
     private Grade grade;
     @XmlElement(required = true)
@@ -20,6 +24,14 @@ public class Review {
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(DateAdapter.class)
     private LocalDateTime reviewDate;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Grade getGrade() {
         return grade;
@@ -60,6 +72,7 @@ public class Review {
 
         Review review = (Review) o;
 
+        if (id != null ? !id.equals(review.id) : review.id != null) return false;
         if (grade != review.grade) return false;
         if (reviewer != null ? !reviewer.equals(review.reviewer) : review.reviewer != null) return false;
         if (comments != null ? !comments.equals(review.comments) : review.comments != null) return false;
@@ -69,7 +82,8 @@ public class Review {
 
     @Override
     public int hashCode() {
-        int result = grade != null ? grade.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (grade != null ? grade.hashCode() : 0);
         result = 31 * result + (reviewer != null ? reviewer.hashCode() : 0);
         result = 31 * result + (comments != null ? comments.hashCode() : 0);
         result = 31 * result + (reviewDate != null ? reviewDate.hashCode() : 0);
