@@ -43,7 +43,7 @@ class ChangesServiceWithCacheIT extends Specification {
                     .create('http://localhost:8080/')
                     .path('03RestWithSpring/api1/v1/change')
                     .modified(Date.from(now.minusHours(8).atZone(ZoneId.systemDefault()).toInstant()), false)
-                    .path("/{id}", changeWithId.id).get()
+                    .path("/{id}", changeWithId.id).head()
         then:
             responseFromCache.status == 304
         when:
@@ -51,7 +51,7 @@ class ChangesServiceWithCacheIT extends Specification {
                     .create('http://localhost:8080/')
                     .path('03RestWithSpring/api1/v1/change')
                     .modified(Date.from(now.minusDays(1).minusHours(8).atZone(ZoneId.systemDefault()).toInstant()), false)
-                    .path("/{id}", changeWithId.id).get()
+                    .path("/{id}", changeWithId.id).head()
         then:
             responseOneMoreTime.status == 200
     }
