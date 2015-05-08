@@ -5,12 +5,10 @@ import com.github.alien11689.webservices.model.Grade
 import com.github.alien11689.webservices.model.Review
 import org.apache.cxf.jaxrs.client.WebClient
 import spock.lang.Specification
-import spock.lang.Unroll
 
 import javax.ws.rs.core.Response
 import java.time.LocalDateTime
 import java.time.ZoneId
-
 
 class ChangesServiceWithCacheIT extends Specification {
     WebClient client = WebClient

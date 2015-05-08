@@ -6,12 +6,18 @@ import org.apache.cxf.jaxrs.client.WebClient
 import spock.lang.Specification
 
 import javax.ws.rs.core.Cookie
+import javax.ws.rs.core.Form
+import javax.ws.rs.core.MultivaluedHashMap
 
 class ProjectServiceWithParametersIT extends Specification {
 
-    WebClient client = WebClient
-            .create('http://localhost:8080/')
-            .path('03RestWithSpring/api1/withParameters/project')
+    WebClient client = createClient()
+
+    private WebClient createClient() {
+        WebClient
+                .create('http://localhost:8080/')
+                .path('03RestWithSpring/api1/withParameters/project')
+    }
 
     void setup() {
         client.delete()
@@ -40,5 +46,22 @@ class ProjectServiceWithParametersIT extends Specification {
     def "should get project by name in cookie"() {
         expect:
             client.path('/cookie').cookie(new Cookie("name", "Test project")).get(Project) == testProject
+    }
+
+    def "should create new project by name in form param and get with matrix"() {
+        when:
+            createClient().path('/form').form(new Form(new MultivaluedHashMap<String, String>(['name': "1234"])))
+        then:
+            createClient().path('/matrix').matrix("name", "1234").get(Project) == new Project(name: "1234")
+    }
+
+    def "should get project by name in bean"() {
+        expect:
+            client.path("/bean").query("name1", "Test").query("name2", "project").get(Project) == testProject
+    }
+
+    def "should get project by name as default param"() {
+        expect:
+            client.path("/queryWithDefault").get(Project) == testProject
     }
 }

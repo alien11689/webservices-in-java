@@ -37,6 +37,31 @@ public class ProjectServiceWithParameters {
         return projectByName(name);
     }
 
+    @GET
+    @Path("/matrix")
+    public Project getProjectByMatrix(@MatrixParam("name") String name) {
+        return projectByName(name);
+    }
+
+    @POST
+    @Path("/form")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void createProjectForm(@FormParam("name") String name) {
+        create(new Project(name));
+    }
+
+    @GET
+    @Path("/bean")
+    public Project getProjectByBean(@BeanParam TwoNames twoNames) {
+        return projectByName(twoNames.getName1() + " " + twoNames.getName2());
+    }
+
+    @GET
+    @Path("/queryWithDefault")
+    public Project getProjectByQueryWithDefault(@QueryParam("name") @DefaultValue("Test project") String name) {
+        return projectByName(name);
+    }
+
     @POST
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Project p) {
