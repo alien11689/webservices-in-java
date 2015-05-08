@@ -1,4 +1,4 @@
-package com.github.alien11689.webservices.restwithspring03.webapplicationexceptionsmapper
+package com.github.alien11689.webservices.restwithspring03.exceptions.mapper
 
 import com.github.alien11689.webservices.model.Project
 import org.apache.cxf.jaxrs.client.WebClient
@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response
 class ProjectServiceWithWebApplicationExceptionsMapperIT extends Specification {
     WebClient client = WebClient
             .create('http://localhost:8080/')
-            .path('03RestWithSpring/api2/v8/project')
+            .path('03RestWithSpring/api2/exceptionMapper/project')
 
     void setup() {
         client.delete()

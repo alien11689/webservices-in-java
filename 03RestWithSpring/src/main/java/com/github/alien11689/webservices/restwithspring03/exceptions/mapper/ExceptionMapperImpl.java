@@ -1,4 +1,4 @@
-package com.github.alien11689.webservices.restwithspring03.webapplicationexceptionsmapper;
+package com.github.alien11689.webservices.restwithspring03.exceptions.mapper;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;

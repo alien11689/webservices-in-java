@@ -1,4 +1,4 @@
-package com.github.alien11689.webservices.restwithspring03
+package com.github.alien11689.webservices.restwithspring03.uriinfo
 
 import com.github.alien11689.webservices.model.Project
 import com.github.alien11689.webservices.model.User
@@ -9,7 +9,7 @@ class ProjectServiceWithUriInfoIT extends Specification {
 
     WebClient client = WebClient
             .create('http://localhost:8080/')
-            .path('03RestWithSpring/api1/v3/project')
+            .path('03RestWithSpring/api1/uriInfo/project')
 
     void setup() {
         client.delete()

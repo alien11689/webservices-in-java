@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
-@Path("/v1/change")
+@Path("/caching/change")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public class ChangesServiceWithCache {
 
@@ -41,7 +41,6 @@ public class ChangesServiceWithCache {
         if (change == null) {
             return Response.noContent().build();
         }
-        EntityTag tag = new EntityTag("change-" + id);
         CacheControl cc = new CacheControl();
         cc.setMaxAge(6000); //in seconds
         cc.setPrivate(true);
@@ -52,9 +51,9 @@ public class ChangesServiceWithCache {
         } else {
             Response.ResponseBuilder builder = request.evaluatePreconditions(maybeLastChangeModification.get());
             if (builder == null) {
-                return Response.ok(change).tag(tag).cacheControl(cc).lastModified(maybeLastChangeModification.get()).build();
+                return Response.ok(change).cacheControl(cc).lastModified(maybeLastChangeModification.get()).build();
             }
-            return builder.cacheControl(cc).tag(tag).status(304).lastModified(maybeLastChangeModification.get()).build();
+            return builder.cacheControl(cc).status(304).lastModified(maybeLastChangeModification.get()).build();
         }
     }
 

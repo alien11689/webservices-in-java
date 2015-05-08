@@ -1,4 +1,4 @@
-package com.github.alien11689.webservices.restwithspring03
+package com.github.alien11689.webservices.restwithspring03.exceptions.raw
 
 import com.github.alien11689.webservices.model.Project
 import org.apache.cxf.jaxrs.client.WebClient
@@ -11,7 +11,7 @@ import javax.ws.rs.core.Response
 class ProjectServiceWithExceptionsIT extends Specification {
     WebClient client = WebClient
             .create('http://localhost:8080/')
-            .path('03RestWithSpring/api1/v6/project')
+            .path('03RestWithSpring/api1/rawExceptions/project')
 
     void setup() {
         client.delete()

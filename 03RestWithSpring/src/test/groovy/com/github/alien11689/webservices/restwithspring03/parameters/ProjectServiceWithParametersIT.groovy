@@ -1,4 +1,4 @@
-package com.github.alien11689.webservices.restwithspring03
+package com.github.alien11689.webservices.restwithspring03.parameters
 
 import com.github.alien11689.webservices.model.Project
 import com.github.alien11689.webservices.model.User
@@ -11,7 +11,7 @@ class ProjectServiceWithParametersIT extends Specification {
 
     WebClient client = WebClient
             .create('http://localhost:8080/')
-            .path('03RestWithSpring/api1/v4/project')
+            .path('03RestWithSpring/api1/withParameters/project')
 
     void setup() {
         client.delete()

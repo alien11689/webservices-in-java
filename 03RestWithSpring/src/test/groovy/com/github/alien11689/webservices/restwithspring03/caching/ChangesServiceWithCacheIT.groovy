@@ -15,7 +15,7 @@ import java.time.ZoneId
 class ChangesServiceWithCacheIT extends Specification {
     WebClient client = WebClient
             .create('http://localhost:8080/')
-            .path('03RestWithSpring/api1/v1/change')
+            .path('03RestWithSpring/api1/caching/change')
 
     def "should use cache when getting change"() {
         LocalDateTime now = LocalDateTime.now()
@@ -33,7 +33,7 @@ class ChangesServiceWithCacheIT extends Specification {
         when:
             Response response = WebClient
                     .create('http://localhost:8080/')
-                    .path('03RestWithSpring/api1/v1/change')
+                    .path('03RestWithSpring/api1/caching/change')
                     .path("/{id}", changeWithId.id).get()
         then:
             response.status == 200
@@ -41,7 +41,7 @@ class ChangesServiceWithCacheIT extends Specification {
         when:
             Response responseFromCache = WebClient
                     .create('http://localhost:8080/')
-                    .path('03RestWithSpring/api1/v1/change')
+                    .path('03RestWithSpring/api1/caching/change')
                     .modified(Date.from(now.minusHours(8).atZone(ZoneId.systemDefault()).toInstant()), false)
                     .path("/{id}", changeWithId.id).head()
         then:
@@ -49,7 +49,7 @@ class ChangesServiceWithCacheIT extends Specification {
         when:
             Response responseOneMoreTime = WebClient
                     .create('http://localhost:8080/')
-                    .path('03RestWithSpring/api1/v1/change')
+                    .path('03RestWithSpring/api1/caching/change')
                     .modified(Date.from(now.minusDays(1).minusHours(8).atZone(ZoneId.systemDefault()).toInstant()), false)
                     .path("/{id}", changeWithId.id).head()
         then:

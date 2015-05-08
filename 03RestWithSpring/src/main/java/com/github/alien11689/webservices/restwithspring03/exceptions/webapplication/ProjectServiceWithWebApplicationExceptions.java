@@ -1,4 +1,4 @@
-package com.github.alien11689.webservices.restwithspring03.webapplicationexceptions;
+package com.github.alien11689.webservices.restwithspring03.exceptions.webapplication;
 
 import com.github.alien11689.webservices.model.Project;
 
@@ -8,7 +8,7 @@ import javax.ws.rs.core.Response;
 import java.util.HashMap;
 import java.util.Map;
 
-@Path("/v7/project")
+@Path("/webApplicationException/project")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public class ProjectServiceWithWebApplicationExceptions {
 

@@ -1,4 +1,4 @@
-package com.github.alien11689.webservices.restwithspring03;
+package com.github.alien11689.webservices.restwithspring03.parameters;
 
 import com.github.alien11689.webservices.model.Project;
 
@@ -7,7 +7,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.HashMap;
 import java.util.Map;
 
-@Path("/v4/project")
+@Path("/withParameters/project")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public class ProjectServiceWithParameters {
 

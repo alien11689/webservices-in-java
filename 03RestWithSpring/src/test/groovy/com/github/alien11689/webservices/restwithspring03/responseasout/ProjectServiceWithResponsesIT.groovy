@@ -11,7 +11,7 @@ import javax.ws.rs.core.Response
 class ProjectServiceWithResponsesIT extends Specification {
     WebClient client = WebClient
             .create('http://localhost:8080/')
-            .path('03RestWithSpring/api1/v9/project')
+            .path('03RestWithSpring/api1/rawResponse/project')
 
     void setup() {
         client.delete()

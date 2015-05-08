@@ -1,4 +1,4 @@
-package com.github.alien11689.webservices.restwithspring03;
+package com.github.alien11689.webservices.restwithspring03.withInterface;
 
 import com.github.alien11689.webservices.model.Project;
 
@@ -6,7 +6,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.Collection;
 
-@Path("/v5/project")
+@Path("/withInterface/project")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface ProjectServiceWithInterface {
     @GET

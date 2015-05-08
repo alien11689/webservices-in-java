@@ -1,4 +1,4 @@
-package com.github.alien11689.webservices.restwithspring03;
+package com.github.alien11689.webservices.restwithspring03.onemethod;
 
 import com.github.alien11689.webservices.model.Project;
 
@@ -7,7 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/v1/project")
+@Path("/onlyGet/project")
 public class ProjectServiceWithGet {
     @GET
     public Project get() {

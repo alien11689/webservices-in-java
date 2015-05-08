@@ -12,21 +12,21 @@
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
-    <bean id="projectServiceV1" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceWithGet"/>
+    <bean id="projectServiceOnlyGet" class="com.github.alien11689.webservices.restwithspring03.onemethod.ProjectServiceWithGet"/>
 
     <bean id="jsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider"/>
 
-    <bean id="projectServiceV2" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceWithMoreMethods"/>
+    <bean id="projectServiceManyMethods" class="com.github.alien11689.webservices.restwithspring03.manymethods.ProjectServiceWithMoreMethods"/>
 
-    <bean id="projectServiceV3" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceWithUriInfo"/>
+    <bean id="projectServiceWithUriInfo" class="com.github.alien11689.webservices.restwithspring03.uriinfo.ProjectServiceWithUriInfo"/>
 
-    <bean id="projectServiceV4" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceWithParameters"/>
+    <bean id="projectServiceWithParameters" class="com.github.alien11689.webservices.restwithspring03.parameters.ProjectServiceWithParameters"/>
 
-    <bean id="projectServiceV5" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceWithInterfaceImpl"/>
+    <bean id="projectServiceWithInterface" class="com.github.alien11689.webservices.restwithspring03.withInterface.ProjectServiceWithInterfaceImpl"/>
 
-    <bean id="projectServiceV6" class="com.github.alien11689.webservices.restwithspring03.ProjectServiceWithExceptions"/>
-    <bean id="projectServiceV7" class="com.github.alien11689.webservices.restwithspring03.webapplicationexceptions.ProjectServiceWithWebApplicationExceptions"/>
-    <bean id="projectServiceV9" class="com.github.alien11689.webservices.restwithspring03.responseasout.ProjectServiceWithResponses"/>
+    <bean id="projectServiceWithExceptions" class="com.github.alien11689.webservices.restwithspring03.exceptions.raw.ProjectServiceWithExceptions"/>
+    <bean id="projectServiceWithWebApplicationExceptions" class="com.github.alien11689.webservices.restwithspring03.exceptions.webapplication.ProjectServiceWithWebApplicationExceptions"/>
+    <bean id="projectServiceWithResponses" class="com.github.alien11689.webservices.restwithspring03.responseasout.ProjectServiceWithResponses"/>
 
     <bean id="changesServiceWithCache" class="com.github.alien11689.webservices.restwithspring03.caching.ChangesServiceWithCache"/>
 
@@ -40,14 +40,14 @@
                   address="/"
                   bus="cxf">
         <jaxrs:serviceBeans>
-            <ref bean="projectServiceV1"/>
-            <ref bean="projectServiceV2"/>
-            <ref bean="projectServiceV3"/>
-            <ref bean="projectServiceV4"/>
-            <ref bean="projectServiceV5"/>
-            <ref bean="projectServiceV6"/>
-            <ref bean="projectServiceV7"/>
-            <ref bean="projectServiceV9"/>
+            <ref bean="projectServiceOnlyGet"/>
+            <ref bean="projectServiceManyMethods"/>
+            <ref bean="projectServiceWithUriInfo"/>
+            <ref bean="projectServiceWithParameters"/>
+            <ref bean="projectServiceWithInterface"/>
+            <ref bean="projectServiceWithExceptions"/>
+            <ref bean="projectServiceWithWebApplicationExceptions"/>
+            <ref bean="projectServiceWithResponses"/>
             <ref bean="changesServiceWithCache"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>

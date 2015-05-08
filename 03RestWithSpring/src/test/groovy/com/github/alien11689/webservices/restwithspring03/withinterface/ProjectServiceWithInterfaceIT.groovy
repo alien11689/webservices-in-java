@@ -1,9 +1,9 @@
-package com.github.alien11689.webservices.restwithspring03
+package com.github.alien11689.webservices.restwithspring03.withinterface
 
 import com.github.alien11689.webservices.model.Project
 import com.github.alien11689.webservices.model.User
+import com.github.alien11689.webservices.restwithspring03.withInterface.ProjectServiceWithInterface
 import org.apache.cxf.jaxrs.client.JAXRSClientFactory
-import org.apache.cxf.jaxrs.client.WebClient
 import spock.lang.Specification
 
 class ProjectServiceWithInterfaceIT extends Specification {
