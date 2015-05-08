@@ -42,7 +42,7 @@ class AsyncProjectServiceIT extends Specification {
                     result = dummyProject
                 }
             }
-            def conditions = new PollingConditions(timeout: 10, initialDelay: 1.5, factor: 1.25)
+            def conditions = new PollingConditions(timeout: 10, initialDelay: 0, factor: 1)
         when:
             Future future = client.query("name", name).async().get(callback)
         then:

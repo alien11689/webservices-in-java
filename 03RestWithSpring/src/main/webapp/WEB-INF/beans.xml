@@ -31,6 +31,7 @@
     <bean id="changesServiceWithCache" class="com.github.alien11689.webservices.restwithspring03.caching.ChangesServiceWithCache"/>
 
     <bean id="asyncProjectService" class="com.github.alien11689.webservices.restwithspring03.async.AsyncProjectService"/>
+    <bean id="realAsyncProjectService" class="com.github.alien11689.webservices.restwithspring03.async.RealAsyncProjectService"/>
 
     <cxf:bus id="cxf">
         <cxf:features>
@@ -52,6 +53,7 @@
             <ref bean="projectServiceWithResponses"/>
             <ref bean="changesServiceWithCache"/>
             <ref bean="asyncProjectService"/>
+            <ref bean="realAsyncProjectService"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>

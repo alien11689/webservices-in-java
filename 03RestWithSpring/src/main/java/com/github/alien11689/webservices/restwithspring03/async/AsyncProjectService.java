@@ -22,7 +22,7 @@ public class AsyncProjectService {
             public void run() {
                 try {
                     Project result = projectByName(name);
-                    Thread.sleep(1000);
+                    Thread.sleep(3000);
                     response.resume(result);
                 } catch (Exception e) {
                     response.resume(e);
