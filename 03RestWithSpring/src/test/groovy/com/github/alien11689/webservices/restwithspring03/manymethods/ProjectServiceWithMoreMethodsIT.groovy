@@ -49,6 +49,6 @@ class ProjectServiceWithMoreMethodsIT extends Specification {
 
     def "should get available operations via options"() {
         expect:
-            client.options().getHeaderString("Allow").split(',') as Set == ['DELETE', 'POST', 'GET', 'PUT', 'OPTIONS', 'HEAD'] as Set
+            client.options().getHeaderString("Allow").split(',') as Set == ['PATCH', 'DELETE', 'POST', 'GET', 'PUT', 'OPTIONS', 'HEAD'] as Set
     }
 }

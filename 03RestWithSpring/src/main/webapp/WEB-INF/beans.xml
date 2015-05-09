@@ -32,6 +32,10 @@
 
     <bean id="asyncProjectService" class="com.github.alien11689.webservices.restwithspring03.async.AsyncProjectService"/>
     <bean id="realAsyncProjectService" class="com.github.alien11689.webservices.restwithspring03.async.RealAsyncProjectService"/>
+    <bean id="projectServicePathVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.path.ProjectServicePathVersion"/>
+    <bean id="projectServiceQueryVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.query.ProjectServiceQueryVersion"/>
+    <bean id="projectServiceMediatypeVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.mediatype.ProjectServiceMediatypeVersion"/>
+    <bean id="projectServiceMediatypeParameterVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.mediatype.parameter.ProjectServiceMediatypeParameterVersion"/>
 
     <cxf:bus id="cxf">
         <cxf:features>
@@ -54,6 +58,10 @@
             <ref bean="changesServiceWithCache"/>
             <ref bean="asyncProjectService"/>
             <ref bean="realAsyncProjectService"/>
+            <ref bean="projectServicePathVersion"/>
+            <ref bean="projectServiceQueryVersion"/>
+            <ref bean="projectServiceMediatypeVersion"/>
+            <ref bean="projectServiceMediatypeParameterVersion"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>
