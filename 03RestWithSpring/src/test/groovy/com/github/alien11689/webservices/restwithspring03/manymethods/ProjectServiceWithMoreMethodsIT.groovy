@@ -5,6 +5,9 @@ import com.github.alien11689.webservices.model.User
 import org.apache.cxf.jaxrs.client.WebClient
 import spock.lang.Specification
 
+import javax.ws.rs.core.Response
+import java.util.concurrent.Future
+
 class ProjectServiceWithMoreMethodsIT extends Specification {
 
     WebClient client = WebClient
@@ -28,6 +31,11 @@ class ProjectServiceWithMoreMethodsIT extends Specification {
             client.put(updatedProject)
         then:
             client.getCollection(Project) == [updatedProject]
+        when:
+            Response response = client.query("old", "Test project").query("new", "Test").async().method("PATCH").get()
+        then:
+            response.status == 204
+            client.getCollection(Project) == [new Project(name: "Test", owner: new User(login: "root", email: "root@admin.com"))]
         when:
             client.delete()
         then:

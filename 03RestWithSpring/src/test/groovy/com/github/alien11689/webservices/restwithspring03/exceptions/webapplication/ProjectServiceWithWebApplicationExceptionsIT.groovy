@@ -34,6 +34,7 @@ class ProjectServiceWithWebApplicationExceptionsIT extends Specification {
         then:
             notThrown(InternalServerErrorException)
             response.status == 400
+            response.getHeaderString("error") == "Project already exists"
         when:
             Response getResponse = client.get()
         then:

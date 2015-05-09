@@ -35,4 +35,16 @@ public class ProjectServiceWithMoreMethods {
     public void deleteProjects() {
         projects.clear();
     }
+
+    @PATCH
+    public void updateProjectName(@QueryParam("old") String oldName, @QueryParam("new") String newName) {
+        Project oldProject = projects.get(oldName);
+        Project newProject = new Project();
+        newProject.setName(newName);
+        newProject.setOwner(oldProject.getOwner());
+        newProject.setChanges(oldProject.getChanges());
+
+        projects.remove(oldName);
+        projects.put(newName, newProject);
+    }
 }

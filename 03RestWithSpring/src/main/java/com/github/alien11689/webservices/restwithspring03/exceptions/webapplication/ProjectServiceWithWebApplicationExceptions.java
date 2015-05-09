@@ -26,7 +26,7 @@ public class ProjectServiceWithWebApplicationExceptions {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Project p) {
         if(projects.containsKey(p.getName())){
-            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+            throw new WebApplicationException(Response.status(Response.Status.BAD_REQUEST).header("error", "Project already exists").build());
         }
         projects.put(p.getName(), p);
     }

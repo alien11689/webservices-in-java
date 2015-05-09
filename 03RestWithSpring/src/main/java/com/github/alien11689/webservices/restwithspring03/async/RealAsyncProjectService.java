@@ -1,6 +1,9 @@
 package com.github.alien11689.webservices.restwithspring03.async;
 
 import com.github.alien11689.webservices.model.Project;
+import org.apache.cxf.jaxrs.model.wadl.Description;
+import org.apache.cxf.jaxrs.model.wadl.Descriptions;
+import org.apache.cxf.jaxrs.model.wadl.DocTarget;
 
 import javax.ws.rs.*;
 import javax.ws.rs.container.AsyncResponse;
