@@ -12,30 +12,30 @@
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
-    <bean id="projectServiceOnlyGet" class="com.github.alien11689.webservices.restwithspring03.onemethod.ProjectServiceWithGet"/>
+    <bean id="projectResourceOnlyGet" class="com.github.alien11689.webservices.restwithspring03.onemethod.ProjectResourceWithGet"/>
 
     <bean id="jsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider"/>
 
-    <bean id="projectServiceManyMethods" class="com.github.alien11689.webservices.restwithspring03.manymethods.ProjectServiceWithMoreMethods"/>
+    <bean id="projectResourceManyMethods" class="com.github.alien11689.webservices.restwithspring03.manymethods.ProjectResourceWithManyMethods"/>
 
-    <bean id="projectServiceWithUriInfo" class="com.github.alien11689.webservices.restwithspring03.uriinfo.ProjectServiceWithUriInfo"/>
+    <bean id="projectResourceWithUriInfo" class="com.github.alien11689.webservices.restwithspring03.uriinfo.ProjectResourceWithUriInfo"/>
 
-    <bean id="projectServiceWithParameters" class="com.github.alien11689.webservices.restwithspring03.parameters.ProjectServiceWithParameters"/>
+    <bean id="projectResourceWithParameters" class="com.github.alien11689.webservices.restwithspring03.parameters.ProjectResourceWithParameters"/>
 
-    <bean id="projectServiceWithInterface" class="com.github.alien11689.webservices.restwithspring03.withInterface.ProjectServiceWithInterfaceImpl"/>
+    <bean id="projectResourceWithInterface" class="com.github.alien11689.webservices.restwithspring03.withInterface.ProjectResourceInterfaceImpl"/>
 
-    <bean id="projectServiceWithExceptions" class="com.github.alien11689.webservices.restwithspring03.exceptions.raw.ProjectServiceWithExceptions"/>
-    <bean id="projectServiceWithWebApplicationExceptions" class="com.github.alien11689.webservices.restwithspring03.exceptions.webapplication.ProjectServiceWithWebApplicationExceptions"/>
-    <bean id="projectServiceWithResponses" class="com.github.alien11689.webservices.restwithspring03.responseasout.ProjectServiceWithResponses"/>
+    <bean id="projectResourceWithExceptions" class="com.github.alien11689.webservices.restwithspring03.exceptions.raw.ProjectResourceWithExceptions"/>
+    <bean id="projectResourceWithWebApplicationExceptions" class="com.github.alien11689.webservices.restwithspring03.exceptions.webapplication.ProjectResourceWithWebApplicationExceptions"/>
+    <bean id="projectResourceWithResponses" class="com.github.alien11689.webservices.restwithspring03.responseasout.ProjectResourceWithRawResponses"/>
 
-    <bean id="changesServiceWithCache" class="com.github.alien11689.webservices.restwithspring03.caching.ChangesServiceWithCache"/>
+    <bean id="changesResourceWithCache" class="com.github.alien11689.webservices.restwithspring03.caching.ChangesResourceWithCache"/>
 
-    <bean id="asyncProjectService" class="com.github.alien11689.webservices.restwithspring03.async.AsyncProjectService"/>
-    <bean id="realAsyncProjectService" class="com.github.alien11689.webservices.restwithspring03.async.RealAsyncProjectService"/>
-    <bean id="projectServicePathVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.path.ProjectServicePathVersion"/>
-    <bean id="projectServiceQueryVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.query.ProjectServiceQueryVersion"/>
-    <bean id="projectServiceMediatypeVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.mediatype.ProjectServiceMediatypeVersion"/>
-    <bean id="projectServiceMediatypeParameterVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.mediatype.parameter.ProjectServiceMediatypeParameterVersion"/>
+    <bean id="asyncProjectResource" class="com.github.alien11689.webservices.restwithspring03.async.AsyncProjectResource"/>
+    <bean id="realAsyncProjectResource" class="com.github.alien11689.webservices.restwithspring03.async.RealAsyncProjectResource"/>
+    <bean id="projectResourcePathVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.path.ProjectResourcePathVersion"/>
+    <bean id="projectResourceQueryVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.query.ProjectResourceQueryVersion"/>
+    <bean id="projectResourceMediatypeVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.mediatype.ProjectResourceMediaTypeVersion"/>
+    <bean id="projectResourceMediatypeParameterVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.mediatype.parameter.ProjectResourceMediaTypeParameterVersion"/>
 
     <!-- Swagger API listing resource -->
     <bean id="swaggerResourceJSON" class="com.wordnik.swagger.jaxrs.listing.ApiListingResourceJSON"/>
@@ -44,7 +44,7 @@
     <bean id="resourceWriter" class="com.wordnik.swagger.jaxrs.listing.ResourceListingProvider"/>
     <bean id="apiWriter" class="com.wordnik.swagger.jaxrs.listing.ApiDeclarationProvider"/>
 
-    <bean id="projectServiceWithSwagger" class="com.github.alien11689.webservices.restwithspring03.swagger.ProjectServiceWithSwagger"/>
+    <bean id="projectResourceWithSwagger" class="com.github.alien11689.webservices.restwithspring03.swagger.ProjectResourceWithSwagger"/>
 
     <bean id="swaggerConfig" class="com.wordnik.swagger.jaxrs.config.BeanConfig">
         <property name="resourcePackage" value="com.github.alien11689.webservices.restwithspring03.swagger"/>
@@ -90,23 +90,23 @@
                   address="/"
                   bus="cxf">
         <jaxrs:serviceBeans>
-            <ref bean="projectServiceOnlyGet"/>
-            <ref bean="projectServiceManyMethods"/>
-            <ref bean="projectServiceWithUriInfo"/>
-            <ref bean="projectServiceWithParameters"/>
-            <ref bean="projectServiceWithInterface"/>
-            <ref bean="projectServiceWithExceptions"/>
-            <ref bean="projectServiceWithWebApplicationExceptions"/>
-            <ref bean="projectServiceWithResponses"/>
-            <ref bean="changesServiceWithCache"/>
-            <ref bean="asyncProjectService"/>
-            <ref bean="realAsyncProjectService"/>
-            <ref bean="projectServicePathVersion"/>
-            <ref bean="projectServiceQueryVersion"/>
-            <ref bean="projectServiceMediatypeVersion"/>
-            <ref bean="projectServiceMediatypeParameterVersion"/>
+            <ref bean="projectResourceOnlyGet"/>
+            <ref bean="projectResourceManyMethods"/>
+            <ref bean="projectResourceWithUriInfo"/>
+            <ref bean="projectResourceWithParameters"/>
+            <ref bean="projectResourceWithInterface"/>
+            <ref bean="projectResourceWithExceptions"/>
+            <ref bean="projectResourceWithWebApplicationExceptions"/>
+            <ref bean="projectResourceWithResponses"/>
+            <ref bean="changesResourceWithCache"/>
+            <ref bean="asyncProjectResource"/>
+            <ref bean="realAsyncProjectResource"/>
+            <ref bean="projectResourcePathVersion"/>
+            <ref bean="projectResourceQueryVersion"/>
+            <ref bean="projectResourceMediatypeVersion"/>
+            <ref bean="projectResourceMediatypeParameterVersion"/>
             <ref bean="swaggerResourceJSON"/>
-            <ref bean="projectServiceWithSwagger"/>
+            <ref bean="projectResourceWithSwagger"/>
             <ref bean="projectResourceWithLinks"/>
             <ref bean="simpleSubresourceProjectResource"/>
             <ref bean="simpleSubresourceChangeResource"/>

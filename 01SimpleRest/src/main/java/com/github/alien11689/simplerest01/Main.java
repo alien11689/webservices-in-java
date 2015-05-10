@@ -6,10 +6,10 @@ import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
 public class Main {
 
     public static void main(String[] args) {
-        HelloWorld helloWorld = new HelloWorld();
+        HelloWorldResource helloWorldResource = new HelloWorldResource();
         JAXRSServerFactoryBean factoryBean = new JAXRSServerFactoryBean();
-        factoryBean.setResourceClasses(HelloWorld.class);
-        factoryBean.setResourceProvider(HelloWorld.class, new SingletonResourceProvider(helloWorld));
+        factoryBean.setResourceClasses(HelloWorldResource.class);
+        factoryBean.setResourceProvider(HelloWorldResource.class, new SingletonResourceProvider(helloWorldResource));
         factoryBean.setAddress("http://localhost:8081/01");
         factoryBean.create();
     }

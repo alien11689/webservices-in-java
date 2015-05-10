@@ -13,7 +13,7 @@
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
     <bean id="jsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider"/>
-    <bean id="projectServiceWithWebApplicationExceptionsMapper" class="com.github.alien11689.webservices.restwithspring03.exceptions.mapper.ProjectServiceWithWebApplicationExceptionsMapper"/>
+    <bean id="projectResourceWithWebApplicationExceptionsMapper" class="com.github.alien11689.webservices.restwithspring03.exceptions.mapper.ProjectResourceWithCustomExceptions"/>
 
     <bean id="exceptionMapper" class="com.github.alien11689.webservices.restwithspring03.exceptions.mapper.ExceptionMapperImpl"/>
 
@@ -27,7 +27,7 @@
                   address="/"
                   bus="cxf">
         <jaxrs:serviceBeans>
-            <ref bean="projectServiceWithWebApplicationExceptionsMapper"/>
+            <ref bean="projectResourceWithWebApplicationExceptionsMapper"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>
