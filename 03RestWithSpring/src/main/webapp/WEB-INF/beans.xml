@@ -37,6 +37,29 @@
     <bean id="projectServiceMediatypeVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.mediatype.ProjectServiceMediatypeVersion"/>
     <bean id="projectServiceMediatypeParameterVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.mediatype.parameter.ProjectServiceMediatypeParameterVersion"/>
 
+
+    <!-- Swagger API listing resource -->
+    <bean id="swaggerResourceJSON" class="com.wordnik.swagger.jaxrs.listing.ApiListingResourceJSON"/>
+
+    <!-- Swagger writers -->
+    <bean id="resourceWriter" class="com.wordnik.swagger.jaxrs.listing.ResourceListingProvider"/>
+    <bean id="apiWriter" class="com.wordnik.swagger.jaxrs.listing.ApiDeclarationProvider"/>
+
+    <bean id="projectServiceWithSwagger" class="com.github.alien11689.webservices.restwithspring03.swagger.ProjectServiceWithSwagger"/>
+
+    <bean id="swaggerConfig" class="com.wordnik.swagger.jaxrs.config.BeanConfig">
+        <property name="resourcePackage" value="com.github.alien11689.webservices.restwithspring03.swagger"/>
+        <property name="version" value="1.0.0"/>
+        <property name="basePath" value="http://localhost:8080/03RestWithSpring/api1"/>
+        <property name="title" value="Swagger example"/>
+        <property name="description" value="Simple example with service"/>
+        <property name="contact" value="alien11689@gmail.com"/>
+        <property name="license" value="Apache 2.0 License"/>
+        <property name="licenseUrl" value="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+        <property name="scan" value="true"/>
+    </bean>
+
+
     <cxf:bus id="cxf">
         <cxf:features>
             <cxf:logging/>
@@ -62,9 +85,13 @@
             <ref bean="projectServiceQueryVersion"/>
             <ref bean="projectServiceMediatypeVersion"/>
             <ref bean="projectServiceMediatypeParameterVersion"/>
+            <ref bean="swaggerResourceJSON"/>
+            <ref bean="projectServiceWithSwagger"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>
+            <ref bean="resourceWriter"/>
+            <ref bean="apiWriter"/>
         </jaxrs:providers>
     </jaxrs:server>
 
