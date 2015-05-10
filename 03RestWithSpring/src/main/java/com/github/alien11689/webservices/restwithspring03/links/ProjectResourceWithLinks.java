@@ -58,7 +58,7 @@ public class ProjectResourceWithLinks {
         if (projects.isEmpty()) {
             return new Link[]{createAllProjectsLink()};
         }
-        Link exampleChild = Link.fromUriBuilder(uriInfo.getBaseUriBuilder().path(ProjectResourceWithLinks.class, "getProject")).rel("child").title("project (fill placeholder)").build("<...>");
+        Link exampleChild = Link.fromUriBuilder(uriInfo.getRequestUriBuilder().path(ProjectResourceWithLinks.class, "getProject")).rel("child").title("project (fill placeholder)").build("PROJECT_NAME");
         return new Link[]{createAllProjectsLink(), exampleChild};
     }
 
