@@ -26,7 +26,6 @@ class ProjectResourceMediaTypeParameterVersionIT extends Specification {
             createClient().accept("application/vnd.com.github.alien+json; version=1").getCollection(Project)[0].name == 'TEST PROJECT'
             createClient().accept("application/vnd.com.github.alien+json; version=2").getCollection(Project)[0].name == 'Test project'
             createClient().accept("application/vnd.com.github.alien+json; version=3").get().status == 406
-            //https://issues.apache.org/jira/browse/CXF-6396
-            // createClient().accept("application/vnd.com.github.alien+json").getCollection(Project)[0].name == 'Test project'
+//            createClient().accept("application/vnd.com.github.alien+json").getCollection(Project)[0].name == 'Test project'
     }
 }
