@@ -30,8 +30,8 @@
 
     <bean id="changesResourceWithCache" class="com.github.alien11689.webservices.restwithspring03.caching.ChangesResourceWithCache"/>
 
-    <bean id="asyncProjectResource" class="com.github.alien11689.webservices.restwithspring03.async.AsyncProjectResource"/>
-    <bean id="realAsyncProjectResource" class="com.github.alien11689.webservices.restwithspring03.async.RealAsyncProjectResource"/>
+    <bean id="asyncProjectResource" class="com.github.alien11689.webservices.restwithspring03.async.simple.AsyncProjectResource"/>
+    <bean id="realAsyncProjectResource" class="com.github.alien11689.webservices.restwithspring03.async.real.RealAsyncProjectResource"/>
     <bean id="projectResourcePathVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.path.ProjectResourcePathVersion"/>
     <bean id="projectResourceQueryVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.query.ProjectResourceQueryVersion"/>
     <bean id="projectResourceMediatypeVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.mediatype.ProjectResourceMediaTypeVersion"/>

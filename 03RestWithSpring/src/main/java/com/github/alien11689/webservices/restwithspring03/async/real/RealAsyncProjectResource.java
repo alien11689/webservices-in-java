@@ -1,4 +1,4 @@
-package com.github.alien11689.webservices.restwithspring03.async;
+package com.github.alien11689.webservices.restwithspring03.async.real;
 
 import com.github.alien11689.webservices.model.Project;
 import org.apache.cxf.jaxrs.model.wadl.Description;
@@ -68,15 +68,6 @@ public class RealAsyncProjectResource {
     @DELETE
     public void deleteProjects() {
         projects.clear();
-    }
-
-    private Project projectByName(String name) {
-        return projects
-                .values()
-                .stream()
-                .filter(p -> p.getName().equals(name))
-                .findFirst()
-                .get();
     }
 
     private static class TaskStatus {
