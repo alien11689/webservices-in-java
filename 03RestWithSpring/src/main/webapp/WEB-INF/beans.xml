@@ -59,6 +59,8 @@
         <property name="scan" value="true"/>
     </bean>
 
+    <bean id="projectResourceWithLinks" class="com.github.alien11689.webservices.restwithspring03.links.ProjectResourceWithLinks"/>
+
 
     <cxf:bus id="cxf">
         <cxf:features>
@@ -87,6 +89,7 @@
             <ref bean="projectServiceMediatypeParameterVersion"/>
             <ref bean="swaggerResourceJSON"/>
             <ref bean="projectServiceWithSwagger"/>
+            <ref bean="projectResourceWithLinks"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>
