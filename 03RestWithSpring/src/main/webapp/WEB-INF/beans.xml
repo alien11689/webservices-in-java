@@ -37,7 +37,6 @@
     <bean id="projectServiceMediatypeVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.mediatype.ProjectServiceMediatypeVersion"/>
     <bean id="projectServiceMediatypeParameterVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.mediatype.parameter.ProjectServiceMediatypeParameterVersion"/>
 
-
     <!-- Swagger API listing resource -->
     <bean id="swaggerResourceJSON" class="com.wordnik.swagger.jaxrs.listing.ApiListingResourceJSON"/>
 
@@ -61,6 +60,25 @@
 
     <bean id="projectResourceWithLinks" class="com.github.alien11689.webservices.restwithspring03.links.ProjectResourceWithLinks"/>
 
+    <bean id="simpleSubresourceProjectDb" class="com.github.alien11689.webservices.restwithspring03.subresources.simple.SimpleSubresourceProjectDb"/>
+
+    <bean id="simpleSubresourceProjectResource" class="com.github.alien11689.webservices.restwithspring03.subresources.simple.ProjectResource">
+        <constructor-arg ref="simpleSubresourceProjectDb"/>
+    </bean>
+
+    <bean id="simpleSubresourceChangeResource" class="com.github.alien11689.webservices.restwithspring03.subresources.simple.ChangeResource">
+        <constructor-arg ref="simpleSubresourceProjectDb"/>
+    </bean>
+
+    <bean id="realSubresourceProjectDb" class="com.github.alien11689.webservices.restwithspring03.subresources.real.RealSubresourceProjectDb"/>
+
+    <bean id="realSubresourceProjectResource" class="com.github.alien11689.webservices.restwithspring03.subresources.real.ProjectResource">
+        <constructor-arg ref="realSubresourceProjectDb"/>
+    </bean>
+
+    <bean id="realSubresourceChangeResource" class="com.github.alien11689.webservices.restwithspring03.subresources.real.ChangeResource">
+        <constructor-arg ref="realSubresourceProjectDb"/>
+    </bean>
 
     <cxf:bus id="cxf">
         <cxf:features>
@@ -90,6 +108,9 @@
             <ref bean="swaggerResourceJSON"/>
             <ref bean="projectServiceWithSwagger"/>
             <ref bean="projectResourceWithLinks"/>
+            <ref bean="simpleSubresourceProjectResource"/>
+            <ref bean="simpleSubresourceChangeResource"/>
+            <ref bean="realSubresourceProjectResource"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>
