@@ -14,6 +14,7 @@
         <module>02RestWithoutDI</module>
         <module>common-model-gen</module>
         <module>03RestWithSpring</module>
+        <module>01SimpleWS</module>
     </modules>
 
     <properties>
@@ -137,6 +138,11 @@
                         <artifactId>jsr311-api</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-rt-frontend-jaxws</artifactId>
+                <version>${cxf.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
