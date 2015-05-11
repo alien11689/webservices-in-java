@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:tns="http://alien11689.github.com/webservices/wsdlfirst"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:model="http://github.com/alien11689/webservices/model"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  name="ProjectServiceImplService"
+                  targetNamespace="http://alien11689.github.com/webservices/wsdlfirst">
+    <wsdl:types>
+
+        <xs:schema
+                elementFormDefault="qualified"
+                targetNamespace="http://alien11689.github.com/webservices/wsdlfirst"
+                version="1.0">
+
+            <xs:import namespace="http://github.com/alien11689/webservices/model" schemaLocation="projectReview.xsd"/>
+
+            <xs:element name="getProjectRequest" type="tns:GetProjectRequest"/>
+
+            <xs:element name="getProjectResponse" type="tns:GetProjectResponse"/>
+
+            <xs:complexType name="GetProjectRequest">
+                <xs:sequence/>
+            </xs:complexType>
+
+            <xs:complexType name="GetProjectResponse">
+                <xs:sequence>
+                    <xs:element ref="model:project"/>
+                </xs:sequence>
+            </xs:complexType>
+
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getProjectResponse">
+        <wsdl:part element="tns:getProjectResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getProjectRequest">
+        <wsdl:part element="tns:getProjectRequest" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="ProjectServicePortType">
+        <wsdl:operation name="getProject">
+            <wsdl:input message="tns:getProjectRequest" name="getProjectRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:getProjectResponse" name="getProjectResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ProjectServiceServiceSoapBinding" type="tns:ProjectServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getProject">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getProjectRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getProjectResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ProjectService">
+        <wsdl:port binding="tns:ProjectServiceServiceSoapBinding" name="ProjectServicePort">
+            <soap:address location="http://localhost:8080/ProjectService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

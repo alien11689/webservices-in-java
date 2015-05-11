@@ -7,7 +7,7 @@
         <servlet-name>WsCXFServlet</servlet-name>
         <display-name>CXF Servlet</display-name>
         <servlet-class>
-            com.github.alien11689.webservices.wswithoutdi02.MyCXFNonSpringServlet
+            com.github.alien11689.webservices.wsdlfirst.WsdlFirstCXFNonSpringServlet
         </servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>

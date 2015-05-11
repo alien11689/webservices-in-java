@@ -16,6 +16,7 @@
         <module>03RestWithSpring</module>
         <module>01SimpleWS</module>
         <module>02WsWithoutSpring</module>
+        <module>03WsWsdlFirst</module>
     </modules>
 
     <properties>
@@ -45,6 +46,8 @@
         <swagger-jaxrs_2.10.version>1.3.12</swagger-jaxrs_2.10.version>
         <servlet-api.version>2.5</servlet-api.version>
         <maven-dependency-plugin.version>2.10</maven-dependency-plugin.version>
+        <build-helper-maven-plugin.version>1.9.1</build-helper-maven-plugin.version>
+        <jaxb2-fluent-api.version>3.0</jaxb2-fluent-api.version>
     </properties>
 
     <dependencyManagement>
@@ -254,6 +257,23 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
                     <version>${maven-dependency-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>cxf-codegen-plugin</artifactId>
+                    <version>${cxf.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.jvnet.jaxb2_commons</groupId>
+                            <artifactId>jaxb2-fluent-api</artifactId>
+                            <version>${jaxb2-fluent-api.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>${build-helper-maven-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>

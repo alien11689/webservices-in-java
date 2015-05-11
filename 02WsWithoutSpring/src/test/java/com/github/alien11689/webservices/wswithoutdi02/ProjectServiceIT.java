@@ -1,4 +1,4 @@
-package com.github.alien11689.webservices.restwithoutdi02;
+package com.github.alien11689.webservices.wswithoutdi02;
 
 import com.github.alien11689.webservices.model.Project;
 import org.junit.Test;
@@ -21,7 +21,7 @@ public class ProjectServiceIT {
         SOAPEnvelope envelope = soapPart.getEnvelope();
         SOAPBody soapBody = envelope.getBody();
 
-        QName qName = new QName("http://restwithoutdi02.webservices.alien11689.github.com/", "getProject", "req");
+        QName qName = new QName("http://wswithoutdi02.webservices.alien11689.github.com/", "getProject", "req");
         soapBody.addBodyElement(qName);
 
         SOAPConnectionFactory connectionFactory = SOAPConnectionFactory.newInstance();

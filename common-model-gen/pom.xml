@@ -31,11 +31,10 @@
                             <goal>unpack-dependencies</goal>
                         </goals>
                         <configuration>
-                            <configuration>
-                                <includes>**/*.xsd</includes>
-                                <overWriteReleases>false</overWriteReleases>
-                                <overWriteSnapshots>true</overWriteSnapshots>
-                            </configuration>
+                            <includes>**/*.xsd</includes>
+                            <excludes>**/*.class</excludes>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>true</overWriteSnapshots>
                         </configuration>
                     </execution>
                 </executions>

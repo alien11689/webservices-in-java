@@ -1,4 +1,4 @@
-package com.github.alien11689.webservices.restwithoutdi02;
+package com.github.alien11689.webservices.wswithoutdi02;
 
 import org.apache.cxf.Bus;
 import org.apache.cxf.BusFactory;

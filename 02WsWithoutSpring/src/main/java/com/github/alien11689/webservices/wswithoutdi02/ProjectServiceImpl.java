@@ -1,8 +1,7 @@
-package com.github.alien11689.webservices.restwithoutdi02;
+package com.github.alien11689.webservices.wswithoutdi02;
 
 import com.github.alien11689.webservices.model.Project;
 
-import javax.jws.WebResult;
 import javax.jws.WebService;
 
 @WebService
