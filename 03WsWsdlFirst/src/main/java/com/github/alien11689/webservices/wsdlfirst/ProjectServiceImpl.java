@@ -75,4 +75,9 @@ public class ProjectServiceImpl implements ProjectServicePortType {
         }
         return new CreateProjectResponse();
     }
+
+    @Override
+    public void deleteAll(@WebParam(partName = "parameters", name = "deleteAllRequest", targetNamespace = "http://alien11689.github.com/webservices/wsdlfirst") DeleteAllRequest parameters) {
+        projects.clear();
+    }
 }

@@ -22,8 +22,13 @@
             <xs:element name="fault" type="tns:Fault"/>
             <xs:element name="getProjectRequest" type="tns:GetProjectRequest"/>
             <xs:element name="getProjectResponse" type="tns:GetProjectResponse"/>
+            <xs:element name="deleteAllRequest" type="tns:DeleteAllRequest"/>
 
             <xs:complexType name="GetProjectsRequest">
+                <xs:sequence/>
+            </xs:complexType>
+
+            <xs:complexType name="DeleteAllRequest">
                 <xs:sequence/>
             </xs:complexType>
 
@@ -87,6 +92,9 @@
     <wsdl:message name="user">
         <wsdl:part element="model:user" name="credits"/>
     </wsdl:message>
+    <wsdl:message name="deleteAllRequest">
+        <wsdl:part element="tns:deleteAllRequest" name="parameters"/>
+    </wsdl:message>
     <wsdl:portType name="ProjectServicePortType">
         <wsdl:operation name="getProjects">
             <wsdl:input message="tns:getProjectsRequest" name="getProjectsRequest"/>
@@ -101,6 +109,9 @@
             <wsdl:input message="tns:getProjectRequest" name="getProjectRequest"/>
             <wsdl:output message="tns:getProjectResponse" name="getProjectResponse"/>
             <wsdl:fault name="fault" message="tns:fault"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteAll">
+            <wsdl:input message="tns:deleteAllRequest" name="deleteAllRequest"/>
         </wsdl:operation>
     </wsdl:portType>
     <wsdl:binding name="ProjectServiceServiceSoapBinding" type="tns:ProjectServicePortType">
@@ -138,6 +149,12 @@
             <wsdl:fault name="fault">
                 <soap:headerfault message="tns:fault" part="error" use="literal"/>
             </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="deleteAll">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="deleteAllRequest">
+                <soap:body  use="literal"/>
+            </wsdl:input>
         </wsdl:operation>
     </wsdl:binding>
     <wsdl:service name="ProjectService">
