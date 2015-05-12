@@ -15,12 +15,37 @@
 
             <xs:import namespace="http://github.com/alien11689/webservices/model" schemaLocation="projectReview.xsd"/>
 
+            <xs:element name="getProjectsRequest" type="tns:GetProjectsRequest"/>
+            <xs:element name="getProjectsResponse" type="tns:GetProjectsResponse"/>
+            <xs:element name="createProjectRequest" type="tns:CreateProjectRequest"/>
+            <xs:element name="createProjectResponse" type="tns:CreateProjectResponse"/>
+            <xs:element name="fault" type="tns:Fault"/>
             <xs:element name="getProjectRequest" type="tns:GetProjectRequest"/>
-
             <xs:element name="getProjectResponse" type="tns:GetProjectResponse"/>
+
+            <xs:complexType name="GetProjectsRequest">
+                <xs:sequence/>
+            </xs:complexType>
+
+            <xs:complexType name="GetProjectsResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" ref="model:project"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="CreateProjectRequest">
+                <xs:sequence>
+                    <xs:element ref="model:project"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="CreateProjectResponse">
+                <xs:sequence/>
+            </xs:complexType>
 
             <xs:complexType name="GetProjectRequest">
                 <xs:sequence/>
+                <xs:attribute name="name"/>
             </xs:complexType>
 
             <xs:complexType name="GetProjectResponse">
@@ -29,34 +54,90 @@
                 </xs:sequence>
             </xs:complexType>
 
+            <xs:complexType name="Fault">
+                <xs:sequence>
+                    <xs:element name="code" type="xs:integer"/>
+                    <xs:element name="message" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
         </xs:schema>
     </wsdl:types>
+    <wsdl:message name="getProjectsResponse">
+        <wsdl:part element="tns:getProjectsResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getProjectsRequest">
+        <wsdl:part element="tns:getProjectsRequest" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createProjectRequest">
+        <wsdl:part element="tns:createProjectRequest" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createProjectResponse">
+        <wsdl:part element="tns:createProjectResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="fault">
+        <wsdl:part element="tns:fault" name="parameters"/>
+    </wsdl:message>
     <wsdl:message name="getProjectResponse">
-        <wsdl:part element="tns:getProjectResponse" name="parameters">
-        </wsdl:part>
+        <wsdl:part element="tns:getProjectResponse" name="parameters"/>
     </wsdl:message>
     <wsdl:message name="getProjectRequest">
-        <wsdl:part element="tns:getProjectRequest" name="parameters">
-        </wsdl:part>
+        <wsdl:part element="tns:getProjectRequest" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="user">
+        <wsdl:part element="model:user" name="credits"/>
     </wsdl:message>
     <wsdl:portType name="ProjectServicePortType">
+        <wsdl:operation name="getProjects">
+            <wsdl:input message="tns:getProjectsRequest" name="getProjectsRequest"/>
+            <wsdl:output message="tns:getProjectsResponse" name="getProjectsResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="createProject">
+            <wsdl:input message="tns:createProjectRequest" name="createProjectRequest"/>
+            <wsdl:output message="tns:createProjectResponse" name="createProjectResponse"/>
+            <wsdl:fault name="fault" message="tns:fault"/>
+        </wsdl:operation>
         <wsdl:operation name="getProject">
-            <wsdl:input message="tns:getProjectRequest" name="getProjectRequest">
-            </wsdl:input>
-            <wsdl:output message="tns:getProjectResponse" name="getProjectResponse">
-            </wsdl:output>
+            <wsdl:input message="tns:getProjectRequest" name="getProjectRequest"/>
+            <wsdl:output message="tns:getProjectResponse" name="getProjectResponse"/>
+            <wsdl:fault name="fault" message="tns:fault"/>
         </wsdl:operation>
     </wsdl:portType>
     <wsdl:binding name="ProjectServiceServiceSoapBinding" type="tns:ProjectServicePortType">
         <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getProjects">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getProjectsRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getProjectsResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createProject">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="createProjectRequest">
+                <soap:body use="literal"/>
+                <soap:header message="tns:user" part="credits" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="createProjectResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="fault">
+                <soap:body use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
         <wsdl:operation name="getProject">
             <soap:operation soapAction="" style="document"/>
             <wsdl:input name="getProjectRequest">
-                <soap:body use="literal"/>
+                <soap:body  use="literal"/>
             </wsdl:input>
             <wsdl:output name="getProjectResponse">
                 <soap:body use="literal"/>
             </wsdl:output>
+            <wsdl:fault name="fault">
+                <soap:headerfault message="tns:fault" part="error" use="literal"/>
+            </wsdl:fault>
         </wsdl:operation>
     </wsdl:binding>
     <wsdl:service name="ProjectService">
