@@ -3,13 +3,17 @@ package com.github.alien11689.webservices.wsdlfirst
 import com.github.alien11689.webservices.model.Project
 import com.github.alien11689.webservices.model.User
 import org.apache.cxf.message.Message
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
 import javax.xml.ws.BindingProvider
 
+@ContextConfiguration(locations = "classpath:testBeans.xml")
 class ProjectServiceIT extends Specification {
 
-    private ProjectServicePortType client = new ProjectService(new URL("http://localhost:8080/03WsWsdlFirst/ProjectService?wsdl")).getProjectServicePort()
+    @Autowired
+    private ProjectServicePortType client
 
     void setup() {
         client.deleteAll(new DeleteAllRequest())
