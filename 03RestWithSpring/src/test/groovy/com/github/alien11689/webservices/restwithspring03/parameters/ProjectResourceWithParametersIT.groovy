@@ -5,6 +5,7 @@ import com.github.alien11689.webservices.model.User
 import org.apache.cxf.jaxrs.client.WebClient
 import spock.lang.Specification
 
+import javax.ws.rs.WebApplicationException
 import javax.ws.rs.core.Cookie
 import javax.ws.rs.core.Form
 import javax.ws.rs.core.MultivaluedHashMap
@@ -36,6 +37,15 @@ class ProjectResourceWithParametersIT extends Specification {
     def "should get project by name in path"() {
         expect:
             client.path("/path/{name}", "Rest project").get(Project) == restProject
+    }
+
+    def "should get project with number as name"() {
+        expect:
+            client.path("/pathNumber/{id}", "42").get(Project) == new Project("42")
+        when:
+            client.path("/pathNumber/{id}", "test").get(Project)
+        then:
+            thrown(WebApplicationException)
     }
 
     def "should get project by name in header"() {

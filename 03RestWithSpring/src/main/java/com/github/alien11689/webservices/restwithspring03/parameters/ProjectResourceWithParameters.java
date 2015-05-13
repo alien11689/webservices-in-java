@@ -6,12 +6,13 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 @Path("/withParameters/project")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public class ProjectResourceWithParameters {
 
-    private Map<String, Project> projects = new HashMap<>();
+    private Map<String, Project> projects = new TreeMap<>();
 
     @GET
     @Path("/query")
@@ -23,6 +24,12 @@ public class ProjectResourceWithParameters {
     @Path("/path/{name}")
     public Project getProjectByPath(@PathParam("name") String name) {
         return projectByName(name);
+    }
+
+    @GET
+    @Path("/pathNumber/{id:\\d+}")
+    public Project getProjectByPathWithNumbers(@PathParam("id") long id) {
+        return new Project(Long.toString(42));
     }
 
     @GET

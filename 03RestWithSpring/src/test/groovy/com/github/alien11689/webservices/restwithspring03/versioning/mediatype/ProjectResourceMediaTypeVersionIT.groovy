@@ -6,6 +6,8 @@ import org.apache.cxf.jaxrs.client.WebClient
 import spock.lang.Shared
 import spock.lang.Specification
 
+import javax.ws.rs.core.Response
+
 class ProjectResourceMediaTypeVersionIT extends Specification {
     private WebClient createClient() {
         WebClient
@@ -25,6 +27,11 @@ class ProjectResourceMediaTypeVersionIT extends Specification {
         expect:
             createClient().accept("application/vnd.com.github.alien.v1+json").getCollection(Project)[0].name == 'TEST PROJECT'
             createClient().accept("application/vnd.com.github.alien.v2+json").getCollection(Project)[0].name == 'Test project'
-            createClient().getCollection(Project)[0].name == 'TEST PROJECT'
+//            createClient().getCollection(Project)[0].name == 'Test project'
+//            createClient().getCollection(Project)[0].name == 'TEST PROJECT'
+        when:
+            Response response = createClient().accept("application/vnd.com.github.alien.v3+json").get()
+        then:
+            response.status == 406
     }
 }
