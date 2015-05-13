@@ -3,15 +3,24 @@
         PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
         "http://java.sun.com/dtd/web-app_2_3.dtd">
 <web-app>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>WEB-INF/beans.xml</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+
     <servlet>
         <servlet-name>WsCXFServlet</servlet-name>
         <display-name>CXF Servlet</display-name>
-        <servlet-class>
-            com.github.alien11689.webservices.wsdlfirst.WsdlFirstCXFNonSpringServlet
-        </servlet-class>
+        <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>WsCXFServlet</servlet-name>
         <url-pattern>/*</url-pattern>

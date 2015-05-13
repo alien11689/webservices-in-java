@@ -53,6 +53,4 @@ class ProjectServiceIT extends Specification {
         then:
             client.getProjects(new GetProjectsRequest()).project == []
     }
-
-    //TODO rewrite to spring
 }
