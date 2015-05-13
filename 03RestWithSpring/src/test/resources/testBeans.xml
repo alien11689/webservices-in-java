@@ -1,0 +1,27 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxrs-client="http://cxf.apache.org/jaxrs-client"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+         http://cxf.apache.org/jaxrs-client http://cxf.apache.org/schemas/jaxrs-client.xsd">
+
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+
+    <bean id="jsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider"/>
+
+    <jaxrs-client:client
+            id="restClient"
+            address="http://localhost:8080/03RestWithSpring/api1/"
+            serviceClass="com.github.alien11689.webservices.restwithspring03.withInterface.ProjectResourceInterface"
+            inheritHeaders="true">
+        <jaxrs-client:headers>
+            <entry key="Content-Type" value="application/json"/>
+            <entry key="Accept" value="application/json"/>
+        </jaxrs-client:headers>
+        <jaxrs-client:providers>
+            <ref bean="jsonProvider"/>
+        </jaxrs-client:providers>
+    </jaxrs-client:client>
+
+</beans>
