@@ -17,25 +17,38 @@ class ProjectResourceWithResponsesIT extends Specification {
         client.delete()
     }
 
-    def "should return our return codes when WebApplicationException thrown"() {
-        given:
-            Project project = new Project("TestProject")
+    Project project = new Project("TestProject")
+
+    def "should throw exception when getting no existing raw object"(){
         when:
             client.query("name", project.name).get(Project)
         then:
             NotFoundException e = thrown(NotFoundException)
             e.response.status == 404
+    }
+
+    def "should return CREATED code in response"() {
         when:
             Response response = client.post(project)
         then:
             response.status == 201
+    }
+
+    def "should not throw exception when getting response"() {
+        given:
+            client.post(project)
         when:
-            response = client.post(project)
+            Response response = client.post(project)
         then:
             notThrown(InternalServerErrorException)
             response.status == 400
+    }
+
+    def "should extract entity from response"(){
+        given:
+            client.post(project)
         when:
-            Response getResponse = client.get()
+            Response getResponse = client.query("name", project.name).get()
         then:
             getResponse.status == 200
             getResponse.readEntity(Project) == project

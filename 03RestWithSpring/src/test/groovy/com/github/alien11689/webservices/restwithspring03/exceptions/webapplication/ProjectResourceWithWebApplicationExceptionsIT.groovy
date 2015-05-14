@@ -17,26 +17,39 @@ class ProjectResourceWithWebApplicationExceptionsIT extends Specification {
         client.delete()
     }
 
-    def "should return our return codes when WebApplicationException thrown"() {
-        given:
-            Project project = new Project("TestProject")
+    Project project = new Project("TestProject")
+
+    def "should throw exception with NOT_FOUND code when project does not exist"() {
         when:
             client.query("name", project.name).get(Project)
         then:
             NotFoundException e = thrown(NotFoundException)
             e.response.status == 404
+    }
+
+    def "should return NO_CONTENT code when project is created"() {
         when:
             Response response = client.post(project)
         then:
             response.status == 204
+    }
+
+    def "should return BAD_REQUEST code when trying to create project second time"() {
+        given:
+            client.post(project)
         when:
-            response = client.post(project)
+            Response response = client.post(project)
         then:
             notThrown(InternalServerErrorException)
             response.status == 400
             response.getHeaderString("error") == "Project already exists"
+    }
+
+    def "should return OK code when getting existing project"() {
+        given:
+            client.post(project)
         when:
-            Response getResponse = client.get()
+            Response getResponse = client.query("name", project.name).get()
         then:
             getResponse.status == 200
             getResponse.readEntity(Project) == project
