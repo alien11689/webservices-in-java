@@ -9,15 +9,9 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>common-model</module>
-        <module>01SimpleRest</module>
-        <module>02RestWithoutDI</module>
-        <module>common-model-gen</module>
-        <module>03RestWithSpring</module>
-        <module>01SimpleWS</module>
-        <module>02WsWithoutSpring</module>
-        <module>03WsWsdlFirst</module>
-        <module>04SpringMvcRest</module>
+        <module>commons</module>
+        <module>rest</module>
+        <module>ws</module>
     </modules>
 
     <properties>
@@ -267,7 +261,7 @@
                                 <goal>exec</goal>
                             </goals>
                             <configuration>
-                                <executable>${basedir}/../startTomcat.sh</executable>
+                                <executable>${basedir}/../../startTomcat.sh</executable>
                             </configuration>
                         </execution>
                     </executions>
