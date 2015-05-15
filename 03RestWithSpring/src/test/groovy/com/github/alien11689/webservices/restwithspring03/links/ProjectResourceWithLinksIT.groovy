@@ -26,37 +26,47 @@ class ProjectResourceWithLinksIT extends Specification {
         when:
             Response discoverGet = createClient(baseUri).get()
         then:
-            discoverGet.links.size() == 1
-            discoverGet.links.find { it.rel == "self" }.uri == baseUri
+            discoverGet.links.size() == 3
+            discoverGet.links.find { it.rel == "projects:get" }.uri == baseUri
+            discoverGet.links.find { it.rel == "project:create" }.uri == baseUri
+            discoverGet.links.find { it.rel == "projects:delete" }.uri == baseUri
         when:
-            Response postResponse = createClient(discoverGet.links[0].uri).post(project)
+            Response postResponse = createClient(discoverGet.links.find { it.rel == "project:create" }.uri).post(project)
         then:
             postResponse.links.size() == 2
-            postResponse.links.find { it.rel == "self" }.uri == baseUri
-            URI newProjectUri = postResponse.links.find { it.rel == "new project" }.uri
-            newProjectUri == new URI(baseUri.toString() + '/test%20project')
+            postResponse.links.find { it.rel == "projects:get" }.uri == baseUri
+            postResponse.links.find { it.rel == "project:get" }.uri == new URI("$baseUri/test%20project")
+            URI newProjectUri = postResponse.links.find { it.rel == "project:get" }.uri
         when:
-            Response secondPostResponse = createClient(discoverGet.links[0].uri).post(project)
+            Response secondPostResponse = createClient(discoverGet.links.find { it.rel == "project:create" }.uri).post(project)
         then:
             secondPostResponse.links.size() == 1
-            secondPostResponse.links.find { it.rel == "self" }.uri == baseUri
+            secondPostResponse.links.find { it.rel == "projects:get" }.uri == baseUri
         when:
             Response getProjectResponse = createClient(newProjectUri).get()
         then:
             getProjectResponse.readEntity(Project) == project
-            getProjectResponse.links.size() == 2
-            getProjectResponse.links.find { it.rel == "self" }.uri == newProjectUri
-            getProjectResponse.links.find { it.rel == "up" }.uri == baseUri
+            getProjectResponse.links.size() == 3
+            getProjectResponse.links.find { it.rel == "project:get" }.uri == newProjectUri
+            getProjectResponse.links.find { it.rel == "project:delete" }.uri == newProjectUri
+            getProjectResponse.links.find { it.rel == "projects:get" }.uri == baseUri
         when:
             Response getAllAfterPost = createClient(baseUri).get()
         then:
-            getAllAfterPost.links.size() == 2
-            getAllAfterPost.links.find { it.rel == "self" }.uri == baseUri
-            getAllAfterPost.links.find { it.rel == "child" }.uri == new URI(baseUri.toString() + '/PROJECT_NAME')
+            getAllAfterPost.links.size() == 4
+            getAllAfterPost.links.find { it.rel == "projects:get" }.uri == baseUri
+            getAllAfterPost.links.find { it.rel == "project:create" }.uri == baseUri
+            getAllAfterPost.links.find { it.rel == "projects:delete" }.uri == baseUri
+            getAllAfterPost.links.find { it.rel == "project:get" }.uri == new URI("$baseUri/PROJECT_NAME")
         when:
             Response deleteProjectResponse = createClient(newProjectUri).delete()
         then:
             deleteProjectResponse.links.size() == 1
-            deleteProjectResponse.links.find { it.rel == "up" }.uri == baseUri
+            deleteProjectResponse.links.find { it.rel == "projects:get" }.uri == baseUri
+        when:
+            Response deleteAll = createClient(baseUri).delete()
+        then:
+            deleteAll.links.size() == 1
+            deleteAll.links.find { it.rel == 'projects:get' }.uri == baseUri
     }
 }
