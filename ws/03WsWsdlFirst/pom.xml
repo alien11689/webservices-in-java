@@ -139,6 +139,7 @@
                                     <wsdl>${basedir}/src/main/resources/reviewer.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-xjc-Xfluent-api</extraarg>
+                                        <!--enable explicit headers parameters-->
                                         <extraarg>-exsh</extraarg>
                                         <extraarg>true</extraarg>
                                     </extraargs>

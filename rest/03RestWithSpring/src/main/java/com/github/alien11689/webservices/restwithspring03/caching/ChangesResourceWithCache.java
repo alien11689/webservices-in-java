@@ -39,8 +39,9 @@ public class ChangesResourceWithCache {
     public Response get(@PathParam("id") Long id, @Context Request request) {
         Change change = changes.get(id);
         if (change == null) {
-            return Response.noContent().build();
+            return Response.status(Response.Status.NOT_FOUND).build();
         }
+
         CacheControl cc = new CacheControl();
         cc.setMaxAge(6000); //in seconds
         cc.setPrivate(true);
@@ -53,7 +54,7 @@ public class ChangesResourceWithCache {
             if (builder == null) {
                 return Response.ok(change).cacheControl(cc).lastModified(maybeLastChangeModification.get()).build();
             }
-            return builder.cacheControl(cc).status(304).lastModified(maybeLastChangeModification.get()).build();
+            return builder.cacheControl(cc).lastModified(maybeLastChangeModification.get()).build();
         }
     }
 

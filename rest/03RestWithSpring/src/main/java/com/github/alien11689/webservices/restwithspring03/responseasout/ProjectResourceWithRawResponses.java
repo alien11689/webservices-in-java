@@ -4,6 +4,7 @@ import com.github.alien11689.webservices.model.Project;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,18 +16,18 @@ public class ProjectResourceWithRawResponses {
     private Map<String, Project> projects = new HashMap<>();
 
     @GET
-    public Project get(@QueryParam("name") String name) {
+    public Response get(@QueryParam("name") String name) {
         if(projects.containsKey(name)){
-            return projects.get(name);
+            return Response.ok(projects.get(name)).build();
         }
-        throw new WebApplicationException(404);
+        return Response.status(Response.Status.NOT_FOUND).build();
     }
 
     @POST
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response create(Project p) {
         if(projects.containsKey(p.getName())){
-            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+            return Response.status(Response.Status.BAD_REQUEST).build();
         }
         projects.put(p.getName(), p);
         return Response.status(Response.Status.CREATED).build();
@@ -36,14 +37,15 @@ public class ProjectResourceWithRawResponses {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response update(Project p) {
         if(!projects.containsKey(p.getName())){
-            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+            return Response.status(Response.Status.BAD_REQUEST).build();
         }
         projects.put(p.getName(), p);
         return Response.status(Response.Status.OK).build();
     }
 
     @DELETE
-    public void deleteProjects() {
+    public Response deleteProjects() {
         projects.clear();
+        return Response.noContent().build();
     }
 }

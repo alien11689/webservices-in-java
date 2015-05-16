@@ -43,11 +43,6 @@ public class AsyncProjectResource {
     }
 
     private Project projectByName(String name) {
-        return projects
-                .values()
-                .stream()
-                .filter(p -> p.getName().equals(name))
-                .findFirst()
-                .get();
+        return projects.get(name);
     }
 }

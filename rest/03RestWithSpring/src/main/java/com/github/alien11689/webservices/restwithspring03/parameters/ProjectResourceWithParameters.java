@@ -29,7 +29,7 @@ public class ProjectResourceWithParameters {
     @GET
     @Path("/pathNumber/{id:\\d+}")
     public Project getProjectByPathWithNumbers(@PathParam("id") long id) {
-        return new Project(Long.toString(42));
+        return new Project(Long.toString(id));
     }
 
     @GET
@@ -81,11 +81,6 @@ public class ProjectResourceWithParameters {
     }
 
     private Project projectByName(String name) {
-        return projects
-                .values()
-                .stream()
-                .filter(p -> p.getName().equals(name))
-                .findFirst()
-                .get();
+        return projects.get(name);
     }
 }

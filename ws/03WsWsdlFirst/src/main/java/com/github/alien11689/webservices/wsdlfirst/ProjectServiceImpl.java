@@ -32,7 +32,13 @@ public class ProjectServiceImpl implements ProjectServicePortType {
     private HashMap<String, Project> projects = new HashMap<>();
 
     @Override
-    public GetProjectResponse getProject(@WebParam(partName = "parameters", name = "getProjectRequest", targetNamespace = "http://alien11689.github.com/webservices/wsdlfirst") GetProjectRequest parameters) throws Fault_Exception {
+    public GetProjectResponse getProject(
+            @WebParam(
+                    partName = "parameters",
+                    name = "getProjectRequest",
+                    targetNamespace = "http://alien11689.github.com/webservices/wsdlfirst"
+            ) GetProjectRequest parameters
+    ) throws Fault_Exception {
         if (!projects.containsKey(parameters.getName())) {
             Fault fault = new Fault();
             fault.setCode(BigInteger.ONE);
@@ -45,20 +51,39 @@ public class ProjectServiceImpl implements ProjectServicePortType {
     }
 
     @Override
-    public GetProjectsResponse getProjects(@WebParam(partName = "parameters", name = "getProjectsRequest", targetNamespace = "http://alien11689.github.com/webservices/wsdlfirst") GetProjectsRequest parameters) {
+    public GetProjectsResponse getProjects(
+            @WebParam(
+                    partName = "parameters",
+                    name = "getProjectsRequest",
+                    targetNamespace = "http://alien11689.github.com/webservices/wsdlfirst"
+            ) GetProjectsRequest parameters
+    ) {
         GetProjectsResponse response = new GetProjectsResponse();
         response.getProject().addAll(projects.values());
         return response;
     }
 
     @Override
-    public CreateProjectResponse createProject(@WebParam(partName = "parameters", name = "createProjectRequest", targetNamespace = "http://alien11689.github.com/webservices/wsdlfirst") CreateProjectRequest parameters, @WebParam(partName = "credits", name = "user", targetNamespace = "http://github.com/alien11689/webservices/model", header = true) User credits) throws Fault_Exception {
+    public CreateProjectResponse createProject(
+            @WebParam(
+                    partName = "parameters",
+                    name = "createProjectRequest",
+                    targetNamespace = "http://alien11689.github.com/webservices/wsdlfirst"
+            ) CreateProjectRequest parameters,
+            @WebParam(
+                    partName = "credits",
+                    name = "user",
+                    targetNamespace = "http://github.com/alien11689/webservices/model",
+                    header = true
+            ) User credits
+    ) throws Fault_Exception {
         if (projects.containsKey(parameters.getProject().getName())) {
             Fault fault = new Fault();
             fault.setCode(BigInteger.valueOf(2));
             fault.setMessage("Project already exists");
             throw new Fault_Exception("Project already exists", fault);
         }
+        @SuppressWarnings("unchecked")
         Map<String, List<String>> httpHeaders = (Map<String, List<String>>) webServiceContext.getMessageContext().get(MessageContext.HTTP_REQUEST_HEADERS);
 
         boolean dryRun = httpHeaders.getOrDefault("dryRun", new ArrayList<>())
@@ -77,7 +102,13 @@ public class ProjectServiceImpl implements ProjectServicePortType {
     }
 
     @Override
-    public void deleteAll(@WebParam(partName = "parameters", name = "deleteAllRequest", targetNamespace = "http://alien11689.github.com/webservices/wsdlfirst") DeleteAllRequest parameters) {
+    public void deleteAll(
+            @WebParam(
+                    partName = "parameters",
+                    name = "deleteAllRequest",
+                    targetNamespace = "http://alien11689.github.com/webservices/wsdlfirst"
+            ) DeleteAllRequest parameters
+    ) {
         projects.clear();
     }
 }

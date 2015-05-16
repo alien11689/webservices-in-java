@@ -21,12 +21,7 @@ public class ProjectResourceWithUriInfo {
     @GET
     public Project get() {
         String name = uriInfo.getQueryParameters().getFirst("name");
-        return projects
-                .values()
-                .stream()
-                .filter(p -> p.getName().equals(name))
-                .findFirst()
-                .get();
+        return projects.get(name);
     }
 
     @POST

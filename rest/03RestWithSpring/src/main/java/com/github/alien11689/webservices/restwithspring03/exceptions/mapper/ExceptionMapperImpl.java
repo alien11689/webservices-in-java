@@ -8,13 +8,13 @@ public class ExceptionMapperImpl implements ExceptionMapper {
     @Override
     public Response toResponse(Throwable exception) {
         if(exception instanceof ProjectNotFoundException){
-            return Response.status(404).build();
+            return Response.status(Response.Status.NOT_FOUND).build();
         }
         if(exception instanceof ProjectDoesNotExistException){
-            return Response.status(400).build();
+            return Response.status(Response.Status.BAD_REQUEST).build();
         }
         if(exception instanceof ProjectAlreadyExistsException){
-            return Response.status(400).build();
+            return Response.status(Response.Status.BAD_REQUEST).build();
         }
         return null;
     }

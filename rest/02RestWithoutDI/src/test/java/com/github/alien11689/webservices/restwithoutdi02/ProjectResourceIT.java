@@ -14,4 +14,20 @@ public class ProjectResourceIT {
         .then()
                 .body("project.@name", equalTo("RestProject"));
     }
+
+    @Test
+    public void shouldReturnProjectNameAsXml() {
+        when()
+                .get("/02RestWithoutDI/project.xml")
+        .then()
+                .body("project.@name", equalTo("RestProject"));
+    }
+
+    @Test
+    public void shouldReturnProjectNameAsJson() {
+        when()
+                .get("/02RestWithoutDI/project.json")
+        .then()
+                .body("name", equalTo("RestProject"));
+    }
 }

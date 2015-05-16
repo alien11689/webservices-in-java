@@ -19,7 +19,7 @@ public class ProjectResourceWithWebApplicationExceptions {
         if(projects.containsKey(name)){
             return projects.get(name);
         }
-        throw new WebApplicationException(404);
+        throw new WebApplicationException(Response.Status.NOT_FOUND);
     }
 
     @POST
