@@ -1,15 +1,13 @@
-package com.github.alien11689.webservices.restwithspring03.async.simple
+package com.github.alien11689.webservices.restwithspring03.async.client
 
 import com.github.alien11689.webservices.model.Project
 import org.apache.cxf.jaxrs.client.WebClient
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
-import spock.util.concurrent.AsyncConditions
 import spock.util.concurrent.PollingConditions
 
 import javax.ws.rs.client.InvocationCallback
-import javax.ws.rs.core.Response
 import java.util.concurrent.Future
 
 class AsyncProjectResourceIT extends Specification {

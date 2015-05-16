@@ -11,12 +11,7 @@ public class ProjectResourceInterfaceImpl implements ProjectResourceInterface {
 
     @Override
     public Project get(String name) {
-        return projects
-                .values()
-                .stream()
-                .filter(p -> p.getName().equals(name))
-                .findFirst()
-                .get();
+        return projects.get(name);
     }
 
     @Override

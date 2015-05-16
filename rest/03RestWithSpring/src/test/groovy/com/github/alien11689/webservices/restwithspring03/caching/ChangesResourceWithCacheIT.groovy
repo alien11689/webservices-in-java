@@ -6,6 +6,7 @@ import com.github.alien11689.webservices.model.Review
 import org.apache.cxf.jaxrs.client.WebClient
 import spock.lang.Specification
 
+import javax.ws.rs.core.EntityTag
 import javax.ws.rs.core.Response
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -32,7 +33,7 @@ class ChangesResourceWithCacheIT extends Specification {
         changeId = changeWithId.id
     }
 
-    def "should get change without cache" (){
+    def "should get change without cache"() {
         when:
             Response response = WebClient
                     .create('http://localhost:8080/')
@@ -63,5 +64,70 @@ class ChangesResourceWithCacheIT extends Specification {
                     .path("/{id}", changeId).head()
         then:
             responseOneMoreTime.status == 200
+    }
+
+    def "should allow for put when etag match"() {
+        when:
+            Response response = WebClient
+                    .create('http://localhost:8080/')
+                    .path('03RestWithSpring/api1/caching/change')
+                    .path("/{id}", changeId).get()
+        then:
+            response.status == 200
+            EntityTag etag = response.entityTag
+        when:
+            Response putResponse = WebClient
+                    .create('http://localhost:8080/')
+                    .path('03RestWithSpring/api1/caching/change')
+                    .match(etag, false)
+                    .put(new Change(
+                    id: Long.valueOf(changeId),
+                    newCode: "aaaaa",
+                    oldCode: "bbbbb"))
+        then:
+            putResponse.status == 204
+    }
+
+    def "should refuse put when etag does not match"() {
+        when:
+            Response response = WebClient
+                    .create('http://localhost:8080/')
+                    .path('03RestWithSpring/api1/caching/change')
+                    .path("/{id}", changeId).get()
+        then:
+            response.status == 200
+            response.entityTag != null
+        when:
+            Response putResponse = WebClient
+                    .create('http://localhost:8080/')
+                    .path('03RestWithSpring/api1/caching/change')
+                    .match(new EntityTag('123123123'),false)
+                    .put(new Change(
+                    id: Long.valueOf(changeId),
+                    newCode: "aaaaa",
+                    oldCode: "bbbbb"))
+        then:
+            putResponse.status == 412
+    }
+
+    def "should allow for put when etag is not specified"() {
+        when:
+            Response response = WebClient
+                    .create('http://localhost:8080/')
+                    .path('03RestWithSpring/api1/caching/change')
+                    .path("/{id}", changeId).get()
+        then:
+            response.status == 200
+            response.entityTag != null
+        when:
+            Response putResponse = WebClient
+                    .create('http://localhost:8080/')
+                    .path('03RestWithSpring/api1/caching/change')
+                    .put(new Change(
+                    id: Long.valueOf(changeId),
+                    newCode: "aaaaa",
+                    oldCode: "bbbbb"))
+        then:
+            putResponse.status == 204
     }
 }

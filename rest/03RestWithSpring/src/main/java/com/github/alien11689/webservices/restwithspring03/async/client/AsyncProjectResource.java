@@ -1,4 +1,4 @@
-package com.github.alien11689.webservices.restwithspring03.async.simple;
+package com.github.alien11689.webservices.restwithspring03.async.client;
 
 import com.github.alien11689.webservices.model.Project;
 
