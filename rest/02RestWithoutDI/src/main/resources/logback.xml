@@ -9,15 +9,15 @@
     </appender>
 
     <appender name="LOGFILE" class="ch.qos.logback.core.FileAppender">
-        <file>${catalina.base}/logs/03WsWsdlFirst.log</file>
+        <file>${catalina.base}/logs/02RestWithoutDI.log</file>
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
     <root level="INFO">
-        <appender-ref ref="STDOUT"/>
-        <appender-ref ref="LOGFILE"/>
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="LOGFILE" />
     </root>
 
 </configuration>

@@ -9,7 +9,7 @@
     </appender>
 
     <appender name="LOGFILE" class="ch.qos.logback.core.FileAppender">
-        <file>${catalina.base}/logs/tomcat.log</file>
+        <file>${catalina.base}/logs/03RestWithSpring.log</file>
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
