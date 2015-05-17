@@ -1,4 +1,4 @@
-package com.github.alien11689.webservices.restwithspring03.async.server
+package com.github.alien11689.webservices.restwithspring03.async.http
 
 import com.github.alien11689.webservices.model.Project
 import org.apache.cxf.jaxrs.client.WebClient
@@ -7,10 +7,10 @@ import spock.util.concurrent.PollingConditions
 
 import javax.ws.rs.core.Response
 
-class RealAsyncResourceServiceIT extends Specification {
+class HttpAsyncResourceServiceIT extends Specification {
     WebClient client = WebClient
             .create('http://localhost:8080/')
-            .path('03RestWithSpring/api1/realAsync/project')
+            .path('03RestWithSpring/api1/httpAsync/project')
 
     void setup() {
         client.delete()

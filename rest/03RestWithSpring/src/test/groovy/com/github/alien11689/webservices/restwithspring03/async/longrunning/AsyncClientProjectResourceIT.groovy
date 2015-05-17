@@ -1,4 +1,4 @@
-package com.github.alien11689.webservices.restwithspring03.async.client
+package com.github.alien11689.webservices.restwithspring03.async.longrunning
 
 import com.github.alien11689.webservices.model.Project
 import org.apache.cxf.jaxrs.client.WebClient
@@ -10,10 +10,10 @@ import spock.util.concurrent.PollingConditions
 import javax.ws.rs.client.InvocationCallback
 import java.util.concurrent.Future
 
-class AsyncProjectResourceIT extends Specification {
+class AsyncClientProjectResourceIT extends Specification {
     WebClient client = WebClient
             .create('http://localhost:8080/')
-            .path('03RestWithSpring/api1/async/project')
+            .path('03RestWithSpring/api1/async/longRunning/project')
 
     void setup() {
         client.delete()
@@ -42,7 +42,7 @@ class AsyncProjectResourceIT extends Specification {
             }
             PollingConditions conditions = new PollingConditions(timeout: 10, initialDelay: 0, factor: 1)
         when:
-            Future future = client.query("name", name).async().get(callback)
+            Future future = client.query("name", name).get(callback)
         then:
             conditions.eventually {
                 assert future.isDone()

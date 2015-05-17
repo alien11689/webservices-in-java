@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Path("/links/project")
-@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+@Produces("application/vnd.com.github.alien.project+xml")
 public class ProjectResourceWithLinks {
 
     private Map<String, Project> projects = new HashMap<>();
@@ -63,7 +63,7 @@ public class ProjectResourceWithLinks {
     }
 
     @POST
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes("application/vnd.com.github.alien.project+xml")
     public Response createProject(Project p) {
         if (projects.containsKey(p.getName())) {
             return Response
@@ -135,6 +135,7 @@ public class ProjectResourceWithLinks {
                         .getBaseUriBuilder()
                         .path(ProjectResourceWithLinks.class))
                 .rel("project:create")
+                .type("application/vnd.com.github.alien.project+xml")
                 .title("create new project")
                 .build();
     }

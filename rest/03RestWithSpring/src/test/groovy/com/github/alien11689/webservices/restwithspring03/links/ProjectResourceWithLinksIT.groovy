@@ -29,16 +29,21 @@ class ProjectResourceWithLinksIT extends Specification {
             discoverGet.links.size() == 3
             discoverGet.links.find { it.rel == "projects:get" }.uri == baseUri
             discoverGet.links.find { it.rel == "project:create" }.uri == baseUri
+            discoverGet.links.find { it.rel == "project:create" }.type == "application/vnd.com.github.alien.project+xml"
             discoverGet.links.find { it.rel == "projects:delete" }.uri == baseUri
         when:
-            Response postResponse = createClient(discoverGet.links.find { it.rel == "project:create" }.uri).post(project)
+            Response postResponse = createClient(discoverGet.links.find { it.rel == "project:create" }.uri)
+                    .type(discoverGet.links.find { it.rel == "project:create" }.type)
+                    .post(project)
         then:
             postResponse.links.size() == 2
             postResponse.links.find { it.rel == "projects:get" }.uri == baseUri
             postResponse.links.find { it.rel == "project:get" }.uri == new URI("$baseUri/test%20project")
             URI newProjectUri = postResponse.links.find { it.rel == "project:get" }.uri
         when:
-            Response secondPostResponse = createClient(discoverGet.links.find { it.rel == "project:create" }.uri).post(project)
+            Response secondPostResponse = createClient(discoverGet.links.find { it.rel == "project:create" }.uri)
+                    .type(discoverGet.links.find { it.rel == "project:create" }.type)
+                    .post(project)
         then:
             secondPostResponse.links.size() == 1
             secondPostResponse.links.find { it.rel == "projects:get" }.uri == baseUri
@@ -56,6 +61,7 @@ class ProjectResourceWithLinksIT extends Specification {
             getAllAfterPost.links.size() == 4
             getAllAfterPost.links.find { it.rel == "projects:get" }.uri == baseUri
             getAllAfterPost.links.find { it.rel == "project:create" }.uri == baseUri
+            getAllAfterPost.links.find { it.rel == "project:create" }.type == "application/vnd.com.github.alien.project+xml"
             getAllAfterPost.links.find { it.rel == "projects:delete" }.uri == baseUri
             getAllAfterPost.links.find { it.rel == "project:get" }.uri == new URI("$baseUri/PROJECT_NAME")
         when:

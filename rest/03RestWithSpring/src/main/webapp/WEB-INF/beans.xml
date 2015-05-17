@@ -30,8 +30,9 @@
 
     <bean id="changesResourceWithCache" class="com.github.alien11689.webservices.restwithspring03.caching.ChangesResourceWithCache"/>
 
-    <bean id="asyncProjectResource" class="com.github.alien11689.webservices.restwithspring03.async.client.AsyncProjectResource"/>
-    <bean id="realAsyncProjectResource" class="com.github.alien11689.webservices.restwithspring03.async.server.RealAsyncProjectResource"/>
+    <bean id="longRunningProjectResource" class="com.github.alien11689.webservices.restwithspring03.async.longrunning.LongRunningProjectResource"/>
+    <bean id="asyncProjectResource" class="com.github.alien11689.webservices.restwithspring03.async.asyncresponse.AsyncProjectResource"/>
+    <bean id="httpAsyncProjectResource" class="com.github.alien11689.webservices.restwithspring03.async.http.HttpAsyncProjectResource"/>
     <bean id="projectResourcePathVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.path.ProjectResourcePathVersion"/>
     <bean id="projectResourceQueryVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.query.ProjectResourceQueryVersion"/>
     <bean id="projectResourceMediatypeVersion" class="com.github.alien11689.webservices.restwithspring03.versioning.mediatype.ProjectResourceMediaTypeVersion"/>
@@ -100,7 +101,7 @@
             <ref bean="projectResourceWithResponses"/>
             <ref bean="changesResourceWithCache"/>
             <ref bean="asyncProjectResource"/>
-            <ref bean="realAsyncProjectResource"/>
+            <ref bean="httpAsyncProjectResource"/>
             <ref bean="projectResourcePathVersion"/>
             <ref bean="projectResourceQueryVersion"/>
             <ref bean="projectResourceMediatypeVersion"/>
@@ -111,6 +112,7 @@
             <ref bean="simpleSubresourceProjectResource"/>
             <ref bean="simpleSubresourceChangeResource"/>
             <ref bean="realSubresourceProjectResource"/>
+            <ref bean="longRunningProjectResource"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>

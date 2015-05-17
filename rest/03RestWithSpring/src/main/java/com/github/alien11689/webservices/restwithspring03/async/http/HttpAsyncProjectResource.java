@@ -1,4 +1,4 @@
-package com.github.alien11689.webservices.restwithspring03.async.server;
+package com.github.alien11689.webservices.restwithspring03.async.http;
 
 import com.github.alien11689.webservices.model.Project;
 import org.apache.cxf.jaxrs.model.wadl.Description;
@@ -16,9 +16,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
-@Path("/realAsync/project")
+@Path("/httpAsync/project")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-public class RealAsyncProjectResource {
+public class HttpAsyncProjectResource {
 
     @Context
     private UriInfo uriInfo;
@@ -34,12 +34,18 @@ public class RealAsyncProjectResource {
     }
 
     @GET
-    @Path("task/{id}")
+    @Path("/task/{id}")
     public Response getTask(@PathParam("id") long id) {
         TaskStatus taskStatus = tasks.get(id);
         Response.ResponseBuilder builder = Response.ok().header("status",taskStatus.status);
         if("FINISHED".equals(taskStatus.status)){
-            return builder.location(uriInfo.getBaseUriBuilder().path("/realAsync/project/{name}").build(taskStatus.project.getName())).build();
+            return builder
+                    .location(uriInfo
+                            .getBaseUriBuilder()
+                            .path(HttpAsyncProjectResource.class)
+                            .path(HttpAsyncProjectResource.class, "getProject")
+                            .build(taskStatus.project.getName()))
+                    .build();
         }
         return builder.build();
     }
@@ -62,7 +68,14 @@ public class RealAsyncProjectResource {
                 tasks.put(taskStatus.id, taskStatus.finish());
             }
         }).start();
-        return Response.accepted().location(uriInfo.getRequestUriBuilder().path("/task/{id}").build(taskId)).build();
+        return Response
+                .accepted()
+                .location(uriInfo
+                        .getBaseUriBuilder()
+                        .path(HttpAsyncProjectResource.class)
+                        .path(HttpAsyncProjectResource.class, "getTask")
+                        .build(taskId))
+                .build();
     }
 
     @DELETE
