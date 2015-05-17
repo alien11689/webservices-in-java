@@ -6,6 +6,7 @@
                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
                   name="ProjectServiceImplService"
                   targetNamespace="http://alien11689.github.com/webservices/wsdlfirst">
+    <wsdl:documentation>Project management service</wsdl:documentation>
     <wsdl:types>
 
         <xs:schema
@@ -97,20 +98,24 @@
     </wsdl:message>
     <wsdl:portType name="ProjectServicePortType">
         <wsdl:operation name="getProjects">
+            <wsdl:documentation>get all projects</wsdl:documentation>
             <wsdl:input message="tns:getProjectsRequest" name="getProjectsRequest"/>
             <wsdl:output message="tns:getProjectsResponse" name="getProjectsResponse"/>
         </wsdl:operation>
         <wsdl:operation name="createProject">
+            <wsdl:documentation>create new project</wsdl:documentation>
             <wsdl:input message="tns:createProjectRequest" name="createProjectRequest"/>
             <wsdl:output message="tns:createProjectResponse" name="createProjectResponse"/>
             <wsdl:fault name="fault" message="tns:fault"/>
         </wsdl:operation>
         <wsdl:operation name="getProject">
+            <wsdl:documentation>get project by name</wsdl:documentation>
             <wsdl:input message="tns:getProjectRequest" name="getProjectRequest"/>
             <wsdl:output message="tns:getProjectResponse" name="getProjectResponse"/>
             <wsdl:fault name="fault" message="tns:fault"/>
         </wsdl:operation>
         <wsdl:operation name="deleteAll">
+            <wsdl:documentation>delete all projects</wsdl:documentation>
             <wsdl:input message="tns:deleteAllRequest" name="deleteAllRequest"/>
         </wsdl:operation>
     </wsdl:portType>
