@@ -42,8 +42,7 @@ public class ChangesResourceWithCache {
         }
 
         CacheControl cc = new CacheControl();
-        cc.setMaxAge(6000); //in seconds
-        cc.setPrivate(true);
+        cc.setMaxAge(60 * 60 * 24); //in seconds
 
         EntityTag eTag = new EntityTag("change_" + id + "_" + change.hashCode());
 
