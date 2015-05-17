@@ -3,13 +3,17 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>parent-pom</artifactId>
+        <artifactId>ws</artifactId>
         <groupId>com.github.alien11689.webservicesinjava</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>01SimpleWS</artifactId>
+
+    <properties>
+        <main.class>com.github.alien11689.simplews01.Main</main.class>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -21,5 +25,21 @@
             <artifactId>cxf-rt-transports-http-jetty</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <defaultGoal>clean compile exec:java</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>docker-start</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

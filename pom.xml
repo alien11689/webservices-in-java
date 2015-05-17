@@ -47,6 +47,8 @@
         <jackson-databind.version>2.4.1.1</jackson-databind.version>
         <jackson-core-asl.version>1.9.13</jackson-core-asl.version>
         <jackson-mapper-asl.version>1.9.13</jackson-mapper-asl.version>
+
+        <main.class/>
     </properties>
 
     <dependencyManagement>
@@ -201,6 +203,7 @@
     </dependencyManagement>
 
     <build>
+        <defaultGoal>clean install</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -264,7 +267,16 @@
                                 <executable>${basedir}/../../startTomcat.sh</executable>
                             </configuration>
                         </execution>
+                        <execution>
+                            <id>runJava</id>
+                            <goals>
+                                <goal>java</goal>
+                            </goals>
+                        </execution>
                     </executions>
+                    <configuration>
+                        <mainClass>${main.class}</mainClass>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.tomcat.maven</groupId>
