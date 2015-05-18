@@ -26,13 +26,13 @@ public class ProjectResourceMediaTypeParameterVersion {
     }
 
     @GET
-    @Produces("application/vnd.com.github.alien+json; version=1")
+    @Produces("application/vnd.com.github.alien11689+json; version=1")
     public Collection<Project> getProjectsV1() {
         return projects.values().stream().map(p -> new Project(p.getName().toUpperCase())).collect(Collectors.toSet());
     }
 
     @GET
-    @Produces("application/vnd.com.github.alien+json; version=2")
+    @Produces("application/vnd.com.github.alien11689+json; version=2")
     public Collection<Project> getProjectsV2() {
         return projects.values();
     }

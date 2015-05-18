@@ -42,7 +42,7 @@ class ProjectServiceIT extends Specification {
             createException.faultInfo.code == BigInteger.valueOf(2)
     }
 
-    def "should throw fault when getting not existing project"(){
+    def "should throw fault when getting not existing project"() {
         when:
             client.getProject(new GetProjectRequest(name: "Unknown")).project
         then:
@@ -50,8 +50,8 @@ class ProjectServiceIT extends Specification {
             getException.faultInfo.code == BigInteger.ONE
     }
 
-    def "should create project in tryRun mode so project will not be created"() {
-        when: "dry run"
+    def "should create project in dryRun mode so project will not be created"() {
+        when:
             ((BindingProvider) client).getRequestContext().put(Message.PROTOCOL_HEADERS as String, ["dryRun": ["true"]])
             client.createProject(new CreateProjectRequest(project: new Project(name: "Test project")), new User(login: "admin", email: 'admin@test.org'))
         then:

@@ -25,12 +25,12 @@ class ProjectResourceMediaTypeVersionIT extends Specification {
 
     def "should get project in two versions"() {
         expect:
-            createClient().accept("application/vnd.com.github.alien.v1+json").getCollection(Project)[0].name == 'TEST PROJECT'
-            createClient().accept("application/vnd.com.github.alien.v2+json").getCollection(Project)[0].name == 'Test project'
+            createClient().accept("application/vnd.com.github.alien11689.v1+json").getCollection(Project)[0].name == 'TEST PROJECT'
+            createClient().accept("application/vnd.com.github.alien11689.v2+json").getCollection(Project)[0].name == 'Test project'
 //            createClient().getCollection(Project)[0].name == 'Test project'
 //            createClient().getCollection(Project)[0].name == 'TEST PROJECT'
         when:
-            Response response = createClient().accept("application/vnd.com.github.alien.v3+json").get()
+            Response response = createClient().accept("application/vnd.com.github.alien11689.v3+json").get()
         then:
             response.status == 406
     }

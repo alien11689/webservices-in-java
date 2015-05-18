@@ -29,7 +29,7 @@ class ProjectResourceWithLinksIT extends Specification {
             discoverGet.links.size() == 2
             discoverGet.links.find { it.rel == "projects:get" }.uri == baseUri
             discoverGet.links.find { it.rel == "project:create" }.uri == baseUri
-            discoverGet.links.find { it.rel == "project:create" }.type == "application/vnd.com.github.alien.project+xml"
+            discoverGet.links.find { it.rel == "project:create" }.type == "application/vnd.com.github.alien11689.project+xml"
         when:
             Response postResponse = createClient(discoverGet.links.find { it.rel == "project:create" }.uri)
                     .type(discoverGet.links.find { it.rel == "project:create" }.type)
@@ -60,9 +60,9 @@ class ProjectResourceWithLinksIT extends Specification {
             getAllAfterPost.links.size() == 4
             getAllAfterPost.links.find { it.rel == "projects:get" }.uri == baseUri
             getAllAfterPost.links.find { it.rel == "project:create" }.uri == baseUri
-            getAllAfterPost.links.find { it.rel == "project:create" }.type == "application/vnd.com.github.alien.project+xml"
+            getAllAfterPost.links.find { it.rel == "project:create" }.type == "application/vnd.com.github.alien11689.project+xml"
             getAllAfterPost.links.find { it.rel == "projects:delete" }.uri == baseUri
-            getAllAfterPost.links.find { it.rel == "project:get" }.uri == new URI("$baseUri/PROJECT_NAME")
+            getAllAfterPost.links.find { it.rel == "project:get:test project" }.uri == new URI("$baseUri/test%20project")
         when:
             Response deleteProjectResponse = createClient(newProjectUri).delete()
         then:

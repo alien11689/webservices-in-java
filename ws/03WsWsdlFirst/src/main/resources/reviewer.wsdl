@@ -146,19 +146,19 @@
         <wsdl:operation name="getProject">
             <soap:operation soapAction="" style="document"/>
             <wsdl:input name="getProjectRequest">
-                <soap:body  use="literal"/>
+                <soap:body use="literal"/>
             </wsdl:input>
             <wsdl:output name="getProjectResponse">
                 <soap:body use="literal"/>
             </wsdl:output>
             <wsdl:fault name="fault">
-                <soap:headerfault message="tns:fault" part="error" use="literal"/>
+                <soap:fault use="literal" name="fault"/>
             </wsdl:fault>
         </wsdl:operation>
         <wsdl:operation name="deleteAll">
             <soap:operation soapAction="" style="document"/>
             <wsdl:input name="deleteAllRequest">
-                <soap:body  use="literal"/>
+                <soap:body use="literal"/>
             </wsdl:input>
         </wsdl:operation>
     </wsdl:binding>
