@@ -57,7 +57,7 @@ public class ProjectResourceWithLinks {
         return Response
                 .ok(new Projects(projects.values().stream().collect(Collectors.toList())))
                 .links(projects.isEmpty() ?
-                        new Link[]{getAllProjectsLink(), deleteAllProjectsLink(), createProjectLink()} :
+                        new Link[]{getAllProjectsLink(), createProjectLink()} :
                         new Link[]{getAllProjectsLink(), deleteAllProjectsLink(), createProjectLink(), getProjectLink("PROJECT_NAME")})
                 .build();
     }

@@ -26,11 +26,10 @@ class ProjectResourceWithLinksIT extends Specification {
         when:
             Response discoverGet = createClient(baseUri).get()
         then:
-            discoverGet.links.size() == 3
+            discoverGet.links.size() == 2
             discoverGet.links.find { it.rel == "projects:get" }.uri == baseUri
             discoverGet.links.find { it.rel == "project:create" }.uri == baseUri
             discoverGet.links.find { it.rel == "project:create" }.type == "application/vnd.com.github.alien.project+xml"
-            discoverGet.links.find { it.rel == "projects:delete" }.uri == baseUri
         when:
             Response postResponse = createClient(discoverGet.links.find { it.rel == "project:create" }.uri)
                     .type(discoverGet.links.find { it.rel == "project:create" }.type)
