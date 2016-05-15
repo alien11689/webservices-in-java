@@ -17,5 +17,6 @@
         <module>02RestWithoutDI</module>
         <module>03RestWithSpring</module>
         <module>04SpringMvcRest</module>
+        <module>05RamlExample</module>
     </modules>
 </project>
