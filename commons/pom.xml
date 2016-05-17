@@ -14,6 +14,7 @@
     <modules>
         <module>common-model</module>
         <module>common-model-gen</module>
+        <module>common-model-lombok</module>
     </modules>
 
 </project>

@@ -32,7 +32,7 @@
         </dependency>
         <dependency>
             <groupId>com.github.alien11689.webservicesinjava</groupId>
-            <artifactId>common-model</artifactId>
+            <artifactId>common-model-lombok</artifactId>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
