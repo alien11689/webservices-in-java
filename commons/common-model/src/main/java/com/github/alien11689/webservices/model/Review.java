@@ -14,13 +14,17 @@ import java.util.List;
 public class Review {
     @XmlAttribute
     private Long id;
+
     @XmlAttribute(required = true)
     private Grade grade;
+
     @XmlElement(required = true)
     private User reviewer;
+
     @XmlElementWrapper
     @XmlElement(name = "comment")
     private List<String> comments;
+
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(DateAdapter.class)
     private LocalDateTime reviewDate;

@@ -14,7 +14,14 @@
 
     <bean id="projectResourceOnlyGet" class="com.github.alien11689.webservices.restwithspring03.onemethod.ProjectResourceWithGet"/>
 
-    <bean id="jsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider"/>
+    <bean id="jacksonObjectMapper" class="com.fasterxml.jackson.databind.ObjectMapper">
+        <property name="serializationInclusion" value="NON_NULL"/>
+        <!--<property name=""-->
+    </bean>
+
+    <bean id="jsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider">
+         <property name="mapper" ref="jacksonObjectMapper"/>
+    </bean>
 
     <bean id="projectResourceManyMethods" class="com.github.alien11689.webservices.restwithspring03.manymethods.ProjectResourceWithManyMethods"/>
 
